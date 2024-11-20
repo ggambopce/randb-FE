@@ -1,4 +1,9 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { 
+  Routes, 
+  Route, 
+  Link, 
+  useNavigate 
+} from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import New from './pages/New';
@@ -18,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/newpost" element={<New />}/>
-        <Route path="/detailpost" element={<Post />}/>
+        <Route path="/detailpost/:id" element={<Post />}/>
         <Route path="*" element={<Notfound />} />
       </Routes>
     </>

@@ -1,0 +1,24 @@
+.PostItem {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+
+    padding: 15px 0px;
+    border-bottom: 1px solid rgb(236, 236, 236);
+}
+
+.PostItem .info_section {
+    display: flex; /* Flexbox 적용 */
+    flex-direction: row; /* 가로 방향으로 정렬 */
+    align-items: center; /* 세로 정렬 */
+    gap: 10px; /* 요소 간격 */
+}
+
+.PostItem .info_section .postTitle {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.PostItem .info_section .postContent {
+    font-size: 18px;
+}

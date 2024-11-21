@@ -1,9 +1,5 @@
-import { 
-  Routes, 
-  Route, 
-  Link, 
-  useNavigate 
-} from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
+import { useReducer } from 'react';
 import './App.css';
 import Home from './pages/Home';
 import New from './pages/New';
@@ -14,20 +10,40 @@ import Notfound from './pages/Notfound';
 import Button from './components/Button';
 import Header from './components/Header';
 
+// 토론 임시 데이터
+const mockData = [
+  {
+    id: 1,
+    postTitle: "토론 주제 1",
+    postContent: "토론 내용 1",
+  },
+  {
+    id: 2,
+    postTitle: "토론 주제 2",
+    postContent: "토론 내용 2",
+  },
+  {
+    id: 3,
+    postTitle: "토론 주제 3",
+    postContent: "토론 내용 3",
+  },
+
+]
+
+function reducer(state, action) {
+  return state;
+}
+
 
 // 1. "/": 모든 토론을 조회하는 Home페이지
 // 2. "/newpost": 새로운 토론을 작성하는 New페이지
 // 3. "/detailpost": 토론을 상세히 조회하는 Post페이지
 // 4. "/updatepost": 기존 토론을 수정하는 Edit페이지
 function App() { 
+  const [data, dispatch] = useReducer(reducer, mockData);
+  
   return (
     <>
-      <Header 
-        title={"Header"}
-        leftChild={<Button text={"Left"} />}
-        rightChild={<Button text={"Right"} />}
-      />
-       
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/newpost" element={<New />}/>

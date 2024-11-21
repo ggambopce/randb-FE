@@ -1,12 +1,12 @@
 import Button from "./Button";
 import "./PostItem.css";
 
-const PostItem = () => {
+const PostItem = ({id, postTitle, postContent}) => {
     return (
         <div className="PostItem">
             <div className="info_section">
-                <div className="postTitle">안락사 찬반 토론</div>
-                <div className="postContent">안락사의 합법화에 대해서 의견을 나눠주세요</div>
+                <div className="postTitle">{postTitle}</div>
+                <div className="postContent">{postContent}</div>
             </div>
             <div className="button_section">
                 <Button text={"참여하기"} />

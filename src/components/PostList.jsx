@@ -2,7 +2,7 @@ import "./PostList.css";
 import Button from "./Button";
 import PostItem from "./PostItem";
 
-const PostList = () => {
+const PostList = ({data = []}) => {
     return (
         <div className="PostList">
             <div className="menu_bar">
@@ -16,7 +16,8 @@ const PostList = () => {
                 />
             </div>
             <div className="list_wrapper">
-                <PostItem />
+                {data.map((item)=>
+                    <PostItem key={item.id} {...item}/>)}
             </div>
         </div>
     )

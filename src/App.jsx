@@ -14,18 +14,18 @@ import Header from './components/Header';
 const mockData = [
   {
     id: 1,
-    postTitle: "토론 주제 1",
-    postContent: "토론 내용 1",
+    postTitle: "여성이 군대에 가야 하는가?",
+    postContent: "여성의 군대 의무화에 대하여 의견을 나눠주세요",
   },
   {
     id: 2,
-    postTitle: "토론 주제 2",
-    postContent: "토론 내용 2",
+    postTitle: "안락사의 합법화",
+    postContent: "안락사의 합법화에 대해 의견을 나눠주세요",
   },
   {
     id: 3,
-    postTitle: "토론 주제 3",
-    postContent: "토론 내용 3",
+    postTitle: "인공지능의 발전",
+    postContent: "우리의 삶을 윤택하게 만들지 어렵게 만들지 의견을 나눠주세요",
   },
 
 ]
@@ -43,8 +43,8 @@ function reducer(state, action) {
   }
 }
 
-const PostStateContext = createContext();
-const PostDispatchContext = createContext();
+export const PostStateContext = createContext();
+export const PostDispatchContext = createContext();
 // 1. "/": 모든 토론을 조회하는 Home페이지
 // 2. "/newpost": 새로운 토론을 작성하는 New페이지
 // 3. "/detailpost": 토론을 상세히 조회하는 Post페이지

@@ -1,13 +1,21 @@
 
 import "./Editor.css";
 import Button from "./Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Editor = ({onSubmit}) => {
+const Editor = ({ initData,onSubmit}) => {
     const [input, setInput] = useState({
         postTitle: "",
         postContent: "",
     });
+
+    useEffect(() => {
+        if(initData){
+            setInput({
+                ...initData
+            })
+        }
+    }, [initData])
 
     const onChangeInput = (e) => {
         let name = e.target.name;

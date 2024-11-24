@@ -8,7 +8,7 @@ import { PostDispatchContext, PostStateContext } from "../App";
 const Edit = () => {
     const params = useParams();
     const nav = useNavigate();
-    const { onDelete } = useContext(PostDispatchContext);
+    const { onDelete, onUpdate } = useContext(PostDispatchContext);
     const data = useContext(PostStateContext);
     const [ curPostItem, setCurPostItem ] = useState();
 
@@ -34,6 +34,18 @@ const Edit = () => {
         }
     };
 
+    const onSubmit = (input) => {
+        if (window.confirm("토론을 정말 수정할까요?")){
+            onUpdate(
+                params.id, 
+                input.postTitle, 
+                input.postContent
+            );
+            nav("/", {replace: true});
+        };    
+    }
+        
+
     return (
         <div>
             <Header
@@ -45,7 +57,7 @@ const Edit = () => {
                         onClick={onClickDelete}
                         text={"삭제하기"} type={"NEGATIVE"} />}
             />
-            <Editor initData={curPostItem} />
+            <Editor initData={curPostItem} onSubmit={onSubmit} />
         </div>
     )
 }

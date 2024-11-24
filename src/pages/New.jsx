@@ -10,7 +10,11 @@ const New = () => {
     const nav = useNavigate();
     
     const onSubmit = (input) => {
-        onCreate(input.postTitle, input.postContent);
+        onCreate(
+            input.postTitle, 
+            input.postContent
+        );
+        nav('/', {replace: true})
     };
 
     return (

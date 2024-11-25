@@ -1,7 +1,11 @@
+import { useParams, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import "./PostItem.css";
 
 const PostItem = ({id, postTitle, postContent}) => {
+    const params = useParams();
+    const nav = useNavigate();
+
     return (
         <div className="PostItem">
             <div className="info_section">
@@ -9,7 +13,10 @@ const PostItem = ({id, postTitle, postContent}) => {
                 <div className="postContent">{postContent}</div>
             </div>
             <div className="button_section">
-                <Button text={"참여하기"} />
+                <Button 
+                    onClick={()=> nav(`/detailpost/${id}`)}
+                    text={"참여하기"}
+                    type={"POSITIVE"} />
             </div>
         </div>
     )

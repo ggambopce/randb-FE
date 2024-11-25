@@ -1,0 +1,35 @@
+.Viewer > section {
+    width: 100%;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+} 
+
+.Viewer > section > h4 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.Viewer .title_wrapper,
+.Viewer .content_wrapper {
+    width: 100%;
+    background-color: rgb(236, 236, 236);
+    border-radius: 5px;
+
+    word-break: keep-all;
+    overflow-wrap: break-word;
+
+}
+
+.Viewer .title_wrapper > p,
+.Viewer .content_wrapper > p {
+    padding: 20px;
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 2.5;
+}

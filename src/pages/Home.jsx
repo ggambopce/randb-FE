@@ -4,7 +4,6 @@ import { PostStateContext } from "../App";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import PostList from "../components/PostList";
-import ReadComponent from "../components/ReadComponent";
 
 const Home = () => {
     const data = useContext(PostStateContext);
@@ -16,7 +15,7 @@ const Home = () => {
                 } 
             />
             <PostList data={data}/>
-            <ReadComponent data={data}/>
+        
         </div>
     )
 }

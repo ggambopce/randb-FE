@@ -1,10 +1,27 @@
+import { useEffect, useState } from "react";
 import "./PostList.css";
 import Button from "./Button";
 import PostItem from "./PostItem";
 import { replace, useNavigate } from "react-router-dom";
+import { mainPosts } from "../api/postApi";
 
-const PostList = ({data = []}) => {
+const PostList = () => {
+    const [data, setData] = useState([]);
     const nav = useNavigate();
+
+    // 데이터 가져오기
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const posts = await mainPosts(); // mainPosts 호출
+                setData(posts); // 상태 업데이트
+            } catch (error) {
+                console.error("Failed to fetch posts:", error);
+            }
+        };
+
+        fetchData(); // 컴포넌트가 마운트될 때 데이터 가져오기
+    }, []);
 
     return (
         <div className="PostList">

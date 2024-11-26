@@ -20,3 +20,8 @@ export const getPosts = async(pageParam) => {
     return res.data
 }
 
+export const mainPosts = async() => {
+    const res = await axios.get(`${prefix}/main/posts`)
+
+    return res.data
+}

@@ -6,15 +6,18 @@ import usePost from "../hooks/usePost";
 
 const Post = () => {
     const params = useParams();
+    const { curPostItem, loading, error } = usePost(params.id);
     const nav = useNavigate();
 
-    const curPostItem = usePost(params.id);
-
-    if (!curPostItem) {
+    if (loading) {
         return <div>데이터 로딩중...</div>
     }
 
-    const { postTitle, postContent } = curPostItem;
+    if (error) {
+        return <div>에러 발생: {error}</div>;
+    }
+
+    const { postTitle, postContent, username } = curPostItem;
 
     return (
         <div>
@@ -29,7 +32,10 @@ const Post = () => {
                         onClick={()=> nav(`/updatepost/${params.id}`)}
                         text={"수정하기"} />}
             />
-            <Viewer postTitle={postTitle} postContent={postContent} />
+            <Viewer 
+                postTitle={postTitle} 
+                postContent={postContent}
+                username={username} />
         </div>
     )
 }

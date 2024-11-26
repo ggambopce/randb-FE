@@ -1,6 +1,6 @@
 import "./Viewer.css";
 
-const Viewer = ( {postTitle, postContent}) => {
+const Viewer = ( {postTitle, postContent, username}) => {
     return (
         <div className="Viewer">
             <section className="post_section">
@@ -13,6 +13,14 @@ const Viewer = ( {postTitle, postContent}) => {
                     <div className="content_wrapper">
                         <p>{postContent}</p>
                     </div>
+                    {username && (
+                    <>
+                        <h4>작성자</h4>
+                        <div className="username_wrapper">
+                            <p>{username}</p>
+                        </div>
+                    </>
+                )}    
             </section>
         </div>
     );

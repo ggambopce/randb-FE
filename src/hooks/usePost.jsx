@@ -1,27 +1,38 @@
-import { useContext, useState, useEffect } from "react";
-import { PostStateContext } from "../App";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getOne } from "../api/postApi";
 
 
 const usePost = (id) => {
-    const data = useContext(PostStateContext);
-    const [ curPostItem, setCurPostItem ] = useState();
+    const [ curPostItem, setCurPostItem ] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const nav= useNavigate();
 
     useEffect(() => {
-        const currentPostItem = data.find(
-            (item) => String(item.id) === String(id)
-        );
+        const fetchPost = async () => {
+            try {
+                const result = await getOne(id); // getOne API 호출
+                if (!result) {
+                    throw new Error("존재하지 않는 토론입니다.");
+                }
+                setCurPostItem(result.data.post);
+            } catch (err) {
+                console.error(err);
+                setError(err.message);
+                window.alert("존재하지 않는 토론입니다.");
+                nav("/", { replace: true });
+            } finally {
+                setLoading(false);
+            }
+        };
 
-        if(!currentPostItem) {
-            window.alert("존재하지 않는 토론입니다.");
-            nav("/", { replace: true });
+        if (id) {
+            fetchPost();
         }
+    }, [id]);
 
-        setCurPostItem(currentPostItem);
-    }, [id, data])
-
-    return curPostItem
-}
+    return { curPostItem, loading, error }; // 상태 반환
+};
 
 export default usePost;

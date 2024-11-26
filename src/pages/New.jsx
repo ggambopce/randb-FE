@@ -2,21 +2,24 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import Editor from "../components/Editor";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { PostDispatchContext } from "../App";
+import { addPost } from "../api/postApi";
 
 const New = () => {
-    const { onCreate } = useContext(PostDispatchContext);
     const nav = useNavigate();
     
-    const onSubmit = (input) => {
-        onCreate(
-            input.postTitle, 
-            input.postContent
-        );
-        nav('/', {replace: true})
+    const onSubmit = async (input) => {
+        try {
+            // API 호출로 데이터를 백엔드에 저장
+            await addPost({
+                postTitle: input.postTitle,
+                postContent: input.postContent,
+                account_id: 1, // account_id는 인증된 사용자의 데이터를 사용
+            });
+            nav("/", { replace: true }); // 메인 페이지로 이동
+        } catch (err) {
+            console.error("Failed to create new post:", err);
+        }
     };
-
     return (
         <div>
             <Header 

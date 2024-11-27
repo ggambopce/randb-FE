@@ -1,0 +1,76 @@
+/* 로그인 페이지 전체 컨테이너 */
+.Login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+/* 로그인 폼 */
+.Login form {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgb(236, 236, 236);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 입력 필드 */
+.Login form input {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.Login form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* 버튼 */
+.Login form button {
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.Login form button:hover {
+  background-color: #0056b3;
+}
+
+/* 알림 메시지 */
+.Login .alert {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .Login form {
+    padding: 15px;
+  }
+
+  .Login form input,
+  .Login form button {
+    font-size: 14px;
+  }
+}

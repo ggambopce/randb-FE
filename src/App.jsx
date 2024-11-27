@@ -9,26 +9,9 @@ import Notfound from './pages/Notfound';
 
 import Button from './components/Button';
 import Header from './components/Header';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
-// 토론 임시 데이터
-const mockData = [
-  {
-    id: 1,
-    postTitle: "여성이 군대에 가야 하는가?",
-    postContent: "여성의 군대 의무화에 대하여 의견을 나눠주세요",
-  },
-  {
-    id: 2,
-    postTitle: "안락사의 합법화",
-    postContent: "안락사의 합법화에 대해 의견을 나눠주세요",
-  },
-  {
-    id: 3,
-    postTitle: "인공지능의 발전",
-    postContent: "우리의 삶을 윤택하게 만들지 어렵게 만들지 의견을 나눠주세요",
-  },
-
-]
 
 function reducer(state, action) {
   switch (action.type) {
@@ -50,7 +33,7 @@ export const PostDispatchContext = createContext();
 // 3. "/detailpost": 토론을 상세히 조회하는 Post페이지
 // 4. "/updatepost": 기존 토론을 수정하는 Edit페이지
 function App() { 
-  const [data, dispatch] = useReducer(reducer, mockData);
+  const [data, dispatch] = useReducer(reducer,[] );
   const idRef = useRef(4);
   // 새로운 토론 추가
   const onCreate = (postTitle, postContent) => {
@@ -99,6 +82,8 @@ function App() {
             <Route path="/newpost" element={<New />}/>
             <Route path="/detailpost/:id" element={<Post />}/>
             <Route path="/updatepost/:id" element={<Edit />}/>
+            <Route path="/login" element={<Login />}/>
+            <Route path="/signup" element={<Signup />}/>
             <Route path="*" element={<Notfound />} />
           </Routes>
         </PostDispatchContext.Provider>

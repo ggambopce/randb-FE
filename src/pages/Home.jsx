@@ -32,7 +32,7 @@ const Home = () => {
                         </div>
                     ) : (
                         <div style={{ display: "flex", gap: "5px" }}>
-                            <Button text={"회원가입"} onClick={() => nav("/signup")} />
+                            <Button text={"회원가입"} onClick={() => nav("/join")} />
                             <Button text={"로그인"} onClick={() => nav("/login")} />
                         </div>
                         

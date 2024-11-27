@@ -1,56 +1,103 @@
+/* 회원가입 페이지 컨테이너 */
 .Signup {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff7e6; /* 따뜻한 크림색 배경 */
+  border-radius: 10px;
+  border: 1px solid #ffd8a8; /* 부드러운 오렌지 테두리 */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
 }
 
-.Signup h2 {
+/* 헤더 스타일 */
+.SignupHeader {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.SignupHeader h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #d9480f; /* 따뜻한 진한 오렌지 */
+}
+
+.SignupHeader p {
+  font-size: 16px;
+  color: #6c757d; /* 중립적인 회색 */
+}
+
+/* 폼 스타일 */
+.SignupForm div {
+  margin-bottom: 20px;
+}
+
+.SignupForm label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #d9480f; /* 진한 오렌지 */
+}
+
+.SignupForm input,
+.SignupForm select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ffd8a8; /* 부드러운 오렌지 테두리 */
+  border-radius: 5px;
+  background-color: #fff; /* 흰색 배경 */
+  transition: border-color 0.3s;
+}
+
+.SignupForm input:focus,
+.SignupForm select:focus {
+  border-color: #ff922b; /* 따뜻한 오렌지색 포커스 */
+  outline: none;
+}
+
+/* 버튼 스타일 */
+.SignupForm button {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #ff922b; /* 따뜻한 오렌지 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.SignupForm button:hover {
+  background-color: #f76707; /* 더 진한 따뜻한 오렌지 */
+}
+
+/* 에러 메시지 */
+.error {
+  color: #d9480f; /* 진한 오렌지로 변경 */
+  font-size: 14px;
   text-align: center;
   margin-bottom: 20px;
 }
 
-.Signup form div {
-  margin-bottom: 15px;
-}
+/* 반응형 */
+@media (max-width: 768px) {
+  .Signup {
+    padding: 20px;
+  }
 
-.Signup form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
+  .SignupHeader h2 {
+    font-size: 24px;
+  }
 
-.Signup form input,
-.Signup form select {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+  .SignupForm input,
+  .SignupForm select {
+    font-size: 14px;
+  }
 
-.Signup form button {
-  width: 100%;
-  padding: 10px;
-  font-size: 18px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.Signup form button:hover {
-  background-color: #0056b3;
-}
-
-.Signup .error {
-  color: red;
-  font-size: 14px;
-  text-align: center;
-  margin-bottom: 15px;
+  .SignupForm button {
+    font-size: 16px;
+  }
 }

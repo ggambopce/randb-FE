@@ -41,11 +41,17 @@ const Login = () => {
     };
 
     return (
-        <form onSubmit={handleLogin}>
-            <input name="loginId" placeholder="아이디" required />
-            <input name="password" placeholder="비밀번호" type="password" required />
-            <button type="submit">로그인</button>
-        </form>
+        <div className="LoginContainer">
+            <div className="LoginHeader">
+                <h1>RED & BLUE</h1>
+                <p>찬반토론에 로그인하세요</p>
+            </div>
+            <form onSubmit={handleLogin} className="LoginForm">
+                <input name="loginId" placeholder="아이디" required />
+                <input name="password" placeholder="비밀번호" type="password" required />
+                <button type="submit">로그인</button>
+            </form>
+        </div>
     );
 };
 

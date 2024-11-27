@@ -8,18 +8,19 @@ const PostItem = ({id, postTitle, postContent}) => {
 
     return (
         <div className="PostItem">
-            <div className="info_section">
-                <div className="postTitle">{postTitle}</div>
-                <div className="postContent">{postContent}</div>
+            <div className="postContentWrapper">
+                <h3 className="postTitle">{postTitle}</h3>
+                <p className="postContent">{postContent}</p>
             </div>
-            <div className="button_section">
+            <div className="postActionWrapper">
                 <Button 
-                    onClick={()=> nav(`/detailpost/${id}`)}
+                    onClick={() => nav(`/detailpost/${id}`)}
                     text={"참여하기"}
-                    type={"POSITIVE"} />
+                    type={"POSITIVE"} 
+                />
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default PostItem;

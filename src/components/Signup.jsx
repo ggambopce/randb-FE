@@ -67,9 +67,12 @@ const Signup = () => {
 
     return (
         <div className="Signup">
-            <h2>회원가입</h2>
+            <div className="SignupHeader">
+                <h2>RED & BLUE 찬반토론</h2>
+                <p>토론에 참여하려면 회원가입을 완료하세요!</p>
+            </div>
             {error && <p className="error">{error}</p>}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="SignupForm">
                 <div>
                     <label>아이디</label>
                     <input

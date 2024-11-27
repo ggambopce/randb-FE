@@ -9,8 +9,10 @@ import Notfound from './pages/Notfound';
 
 import Button from './components/Button';
 import Header from './components/Header';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import LoginPage from './pages/LoginPage';
+import Join from './pages/Join';
 
 
 function reducer(state, action) {
@@ -82,8 +84,8 @@ function App() {
             <Route path="/newpost" element={<New />}/>
             <Route path="/detailpost/:id" element={<Post />}/>
             <Route path="/updatepost/:id" element={<Edit />}/>
-            <Route path="/login" element={<Login />}/>
-            <Route path="/signup" element={<Signup />}/>
+            <Route path="/login" element={<LoginPage />}/>
+            <Route path="/join" element={<Join />}/>
             <Route path="*" element={<Notfound />} />
           </Routes>
         </PostDispatchContext.Provider>

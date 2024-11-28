@@ -30,6 +30,7 @@ const New = () => {
                         text={"< 뒤로 가기"} />}
             />
             <Editor onSubmit={onSubmit}/>
+            
 
         </div>
     )

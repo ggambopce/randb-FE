@@ -8,6 +8,7 @@ import Edit from './pages/Edit';
 import Notfound from './pages/Notfound';
 import LoginPage from './pages/LoginPage';
 import Join from './pages/Join';
+import useLoginInfo from './hooks/useLoginInfo';
 
 
 function reducer(state, action) {
@@ -64,6 +65,8 @@ function App() {
       id,
     })
   }
+
+  useLoginInfo();
 
   return (
     <>

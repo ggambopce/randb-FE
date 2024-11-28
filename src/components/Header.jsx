@@ -17,13 +17,7 @@ const Header = ({title, leftChild, rightChild}) => {
         <header className="Header">
             {/* 좌측 콘텐츠 */}
             <div className="header_left">
-                {leftChild ? (
-                    leftChild
-                ) : (
-                    isLoggedIn && (
-                        <button onClick={handleLogout}>로그아웃</button>
-                    )
-                )}
+                {leftChild}
             </div>
 
             {/* 중앙 제목 */}
@@ -35,7 +29,7 @@ const Header = ({title, leftChild, rightChild}) => {
                     rightChild
                 ) : (
                     isLoggedIn ? (
-                        <span>{user?.username}님</span>
+                        <span>{user?.username} 회원님</span>
                     ) : (
                         <button>로그인</button>
                     )

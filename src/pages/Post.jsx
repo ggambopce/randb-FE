@@ -3,6 +3,8 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import Viewer from "../components/Viewer";
 import usePost from "../hooks/usePost";
+import OpinionList from "../components/opinion/OpinionList";
+import OpinionEditor from "../components/opinion/OpinionEditor";
 
 const Post = () => {
     const params = useParams();
@@ -35,7 +37,11 @@ const Post = () => {
             <Viewer 
                 postTitle={postTitle} 
                 postContent={postContent}
-                username={username} />
+                username={username} 
+                />
+            <OpinionList />
+            <OpinionEditor />
+           
         </div>
     )
 }

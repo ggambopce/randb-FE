@@ -12,8 +12,7 @@ const loginSlice = createSlice({
     reducers: {
         login: (state, action) => { //(상태,파라미터)
             state.isLoggedIn = true;
-            state.user = action.payload.user;
-            console.log(action.payload);
+            state.user= action.payload.user
             state.accessToken = action.payload.accessToken;
         },
         logout: (state) => {

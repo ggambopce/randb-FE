@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./PostList.css";
 import Button from "./Button";
 import PostItem from "./PostItem";
-import { replace, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { mainPosts } from "../api/postApi";
 
 const PostList = () => {
     const nav = useNavigate();
+    const { isLoggedIn } = useSelector((state) => state.loginSlice);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -26,6 +28,15 @@ const PostList = () => {
     
         fetchPosts();
       }, []);
+
+      const handleNewPostClick = () => {
+        if (isLoggedIn) {
+            nav("/newpost"); // 로그인된 경우 새로운 토론 작성 페이지로 이동
+        } else {
+            alert("로그인이 필요합니다.");
+            nav("/login"); // 로그인되지 않은 경우 로그인 페이지로 이동
+        }
+    };
     
       if (loading) return <div>Loading...</div>;
       if (error) return <div>Error: {error}</div>;
@@ -38,7 +49,7 @@ const PostList = () => {
                     <option value={"oldest"}>오래된 순</option>
                 </select>
                 <Button 
-                    onClick={() => nav("/newpost")}
+                    onClick={handleNewPostClick}
                     text={"새로운 토론 작성하기"}
                     type={"POSITIVE"}
                 />

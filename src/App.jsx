@@ -6,11 +6,6 @@ import New from './pages/New';
 import Post from './pages/Post';
 import Edit from './pages/Edit';
 import Notfound from './pages/Notfound';
-
-import Button from './components/Button';
-import Header from './components/Header';
-import Login from './components/Login';
-import Signup from './components/Signup';
 import LoginPage from './pages/LoginPage';
 import Join from './pages/Join';
 
@@ -37,6 +32,7 @@ export const PostDispatchContext = createContext();
 function App() { 
   const [data, dispatch] = useReducer(reducer,[] );
   const idRef = useRef(4);
+
   // 새로운 토론 추가
   const onCreate = (postTitle, postContent) => {
     dispatch({

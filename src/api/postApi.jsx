@@ -31,3 +31,14 @@ export const addPost = async(postData) => {
 
     return res.data
 }
+
+// 유저 정보 가져오기
+export const getUserInfo = async (token) => {
+    const res = await axios.post(`${prefix}/userinfo`, null, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return res.data;
+}
+

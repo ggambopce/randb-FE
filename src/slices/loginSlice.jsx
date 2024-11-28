@@ -10,9 +10,10 @@ const loginSlice = createSlice({
     name: 'loginSlice',
     initialState: initState,
     reducers: {
-        login: (state, action) => {
+        login: (state, action) => { //(상태,파라미터)
             state.isLoggedIn = true;
             state.user = action.payload.user;
+            console.log(action.payload);
             state.accessToken = action.payload.accessToken;
         },
         logout: (state) => {

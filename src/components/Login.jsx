@@ -1,8 +1,10 @@
 import { useDispatch } from "react-redux";
 import { login } from "../slices/loginSlice";
+import { replace, useNavigate } from "react-router-dom";
 import "../components/Login.css";
 const Login = () => {
     const dispatch = useDispatch();
+    const nav = useNavigate();
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -34,6 +36,8 @@ const Login = () => {
             localStorage.setItem("accessToken", accessToken);
 
             alert("로그인 성공!");
+            nav("/", {replace:true});
+
         } catch (error) {
             console.error("로그인 에러:", error);
             alert("로그인에 실패했습니다.");

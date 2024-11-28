@@ -76,9 +76,12 @@
 ## 📋 API 명세서
 <img alt=".png" src="https://github.com/user-attachments/assets/53ed2d94-ca30-49dd-8193-c5da93ab2d44" width="700"/>
 
-## 🎯 트러블 슈팅
-> - [Open AI 키 발급 문제]()<br>
-> - [DTO사용]()<br>
+## 🎯 학습 과정
+> - [Props - 컴포넌트에 값 전달하기]()<br>
+> - [이벤트 핸들링]()<br>
+> - [State - 상태 관리하기]()<br>
+> - [Context]()<br>
+> - [axios]()<br>
 
 
 ## 📦 디렉토리 구조

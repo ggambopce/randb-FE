@@ -1,0 +1,51 @@
+.opinion-item {
+  border: 1px solid #ffd8a8; /* 부드러운 오렌지 테두리 */
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #fff7e6; /* 따뜻한 크림색 배경 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+  box-sizing: border-box;
+}
+
+.opinion-item.red {
+  border-left: 8px solid #ff6b6b; /* 밝은 빨강 */
+}
+
+.opinion-item.blue {
+  border-left: 8px solid #4dabf7; /* 밝은 파랑 */
+}
+
+.opinion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #495057; /* 중립적인 회색 */
+}
+
+.opinion-header .opinion-type {
+  font-weight: bold;
+  color: #d9480f; /* 진한 오렌지 */
+}
+
+.opinion-header .opinion-user {
+  font-style: italic;
+  color: #495057; /* 중립적인 회색 */
+}
+
+.opinion-header .opinion-date {
+  font-size: 12px;
+  color: #868e96; /* 흐릿한 회색 */
+}
+
+.opinion-content {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #343a40; /* 진한 회색 */
+  background-color: #ffffff; /* 흰색 배경 */
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #ffd8a8; /* 부드러운 오렌지 테두리 */
+}

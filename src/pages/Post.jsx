@@ -39,8 +39,10 @@ const Post = () => {
                 postContent={postContent}
                 username={username} 
                 />
-            <OpinionList />
-            <OpinionEditor />
+            {/* postId를 전달 */}
+            <OpinionList postId={params.id} />
+            <OpinionEditor postId={params.id} />
+
            
         </div>
     )

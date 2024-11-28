@@ -14,11 +14,13 @@
 
 .post_main_section {
   width: 100%;
+  margin: 0 auto; /* 중앙 정렬 */
   background-color: #fff7e6; /* 따뜻한 크림색 */
   border-radius: 10px;
   border: 1px solid #ffd8a8; /* 부드러운 오렌지 테두리 */
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+  box-sizing: border-box; /* 패딩 포함 크기 계산 */
 }
 
 .post_main_section h4 {
@@ -31,19 +33,19 @@
 .title_wrapper,
 .content_wrapper {
   width: 100%; /* 부모 컨테이너에 맞춰 확장 */
-  padding: 20px;
+  padding: 10px 15px; /* 패딩 줄임 */
   background-color: #ffffff;
   border-radius: 8px;
   border: 1px solid #ffd8a8;
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 18px; /* 기존 폰트 크기 유지 */
+  line-height: 1.6; /* 기존 줄 간격 유지 */
   color: #343a40; /* 중립적인 회색 */
   box-sizing: border-box; /* 패딩 포함 크기 계산 */
 }
 
 .title_wrapper {
-  margin-bottom: 20px;
-  font-weight: 600;
+  margin-bottom: 10px; /* 여백 줄임 */
+  font-weight: 600; /* 기존 폰트 두께 유지 */
   color: #495057; /* 더 진한 회색 */
 }
 

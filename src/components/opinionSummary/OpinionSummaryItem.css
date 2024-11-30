@@ -1,0 +1,53 @@
+.opinion-summary-item {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ffd8a8; /* 부드러운 오렌지 */
+  background-color: #fff7e6; /* 따뜻한 크림색 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.summary-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #faad14; /* 밝은 오렌지색 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.summary-button:hover {
+  background-color: #d48806; /* 더 진한 오렌지 */
+}
+
+.summary-results {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #343a40; /* 중립적인 회색 */
+}
+
+.summary-results h3 {
+  font-size: 20px;
+  color: #d9480f; /* 진한 오렌지 */
+  margin-bottom: 10px;
+}
+
+.summary-results p {
+  background-color: #ffffff;
+  padding: 15px;
+  border: 1px solid #ffd8a8; /* 부드러운 오렌지 */
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}

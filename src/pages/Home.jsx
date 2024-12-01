@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
+import { logoutApi } from "../api/loginApi";
 import { logout } from "../slices/loginSlice";
 import { PostStateContext } from "../App";
 
@@ -15,10 +16,27 @@ const Home = () => {
     const { isLoggedIn, user } = useSelector((state) => state.loginSlice);
     
     // 로그아웃 처리
-    const handleLogout = () => {
-        dispatch(logout());
-        localStorage.removeItem("accessToken");
-        alert("로그아웃되었습니다.");
+    const handleLogout = async () => {
+        try {
+            if (user?.id) {
+                // 로그아웃 API 호출
+                await logoutApi(user.id);
+
+                // Redux 상태 초기화
+                dispatch(logout());
+
+                // 로컬 스토리지 초기화
+                localStorage.removeItem("accessToken");
+
+                alert("로그아웃되었습니다.");
+                nav("/", { replace: true }); // 메인 페이지로 리디렉션
+            } else {
+                alert("로그아웃할 사용자가 없습니다.");
+            }
+        } catch (error) {
+            console.error("로그아웃 실패:", error.response?.data || error.message);
+            alert("로그아웃에 실패했습니다.");
+        }
     };
 
     return (

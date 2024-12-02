@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { useNavigate, useLocation } from "react-router-dom"
 import { getUserInfo } from "../api/memberApi";
 import { login, logout } from "../slices/loginSlice";
+import { logoutApi } from "../api/loginApi";
 
 const useLoginInfo = () => {
     const nav = useNavigate()
@@ -36,7 +37,7 @@ const useLoginInfo = () => {
                 console.error("유저 정보를 가져오는 데 실패했습니다.", err);
                
                 // 인증 실패 시 토큰 초기화 및 로그인 페이지로 리다이렉트
-                dispatch(logout()); // Redux 상태 초기화
+                dispatch(logoutApi()); // Redux 상태 초기화
                 localStorage.removeItem("accessToken"); // 로컬 스토리지 토큰 삭제
 
                 if (

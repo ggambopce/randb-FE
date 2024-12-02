@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import Button from "../components/Button";
-import Editor from "../components/Editor";
+import Editor from "../components/post/Editor";
 import { useNavigate } from "react-router-dom";
 import { addPost } from "../api/postApi";
 

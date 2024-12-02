@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { login } from "../slices/loginSlice";
+import { login } from "../../slices/loginSlice";
 import { replace, useNavigate } from "react-router-dom";
-import "../components/Login.css";
+import "./Login.css";
 const Login = () => {
     const dispatch = useDispatch();
     const nav = useNavigate();

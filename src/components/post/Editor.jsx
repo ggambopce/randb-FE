@@ -1,6 +1,6 @@
 
 import "./Editor.css";
-import Button from "./Button";
+import Button from "../Button";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 

@@ -7,7 +7,7 @@ import { PostStateContext } from "../App";
 
 import Header from "../components/Header";
 import Button from "../components/Button";
-import PostList from "../components/PostList";
+import PostList from "../components/post/PostList";
 
 const Home = () => {
     const data = useContext(PostStateContext);

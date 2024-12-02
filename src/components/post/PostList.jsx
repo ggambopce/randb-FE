@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./PostList.css";
-import Button from "./Button";
+import Button from "../Button";
 import PostItem from "./PostItem";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { mainPosts } from "../api/postApi";
+import { mainPosts } from "../../api/postApi";
 
 const PostList = () => {
     const nav = useNavigate();

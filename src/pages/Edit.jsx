@@ -1,7 +1,7 @@
 import { useParams, useNavigate, Navigate, replace } from "react-router-dom";
 import Header from "../components/Header";
 import Button from "../components/Button";
-import Editor from "../components/Editor";
+import Editor from "../components/post/Editor";
 import { useContext, useEffect, useState } from "react";
 import { PostDispatchContext, PostStateContext } from "../App";
 import usePost from "../hooks/usePost";

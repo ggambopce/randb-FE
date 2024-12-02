@@ -2,7 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Header from "../components/Header";
-import Signup from "../components/Signup";
+import Signup from "../components/account/Signup";
 
 const Join = () => {
    

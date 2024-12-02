@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Button from "./Button";
+import Button from "../Button";
 import "./PostItem.css";
 
 const PostItem = ({id, postTitle, postContent}) => {

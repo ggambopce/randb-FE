@@ -21,6 +21,7 @@ const LoginPage = () => {
                         text={"Home"} />}
             />
             <Login />
+            
         </div>
     )
 }

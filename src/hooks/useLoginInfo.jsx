@@ -28,13 +28,22 @@ const useLoginInfo = () => {
 
             try {
                 const res = await getUserInfo(token); // 유저 정보 요청
-                const { username, id, roles } = res.data; // 필요한 정보 추출
+                const { username, id, roles, loginType } = res.data; // 필요한 정보 추출
                 
                 // Redux 상태 업데이트
-                dispatch(login({ user: { username, id, roles }, accessToken: token }));
+                dispatch(login({ user: { username, id, roles, loginType }, accessToken: token }));
             } catch (err) {
 
                 console.error("유저 정보를 가져오는 데 실패했습니다.", err);
+
+                // 인증 실패 시 로그아웃 처리
+                if (token) {
+                    try {
+                        await logoutApi(); // 서버 로그아웃 호출
+                    } catch (logoutErr) {
+                        console.error("로그아웃 중 오류 발생:", logoutErr);
+                    }
+                }
                
                 // 인증 실패 시 토큰 초기화 및 로그인 페이지로 리다이렉트
                 dispatch(logoutApi()); // Redux 상태 초기화
@@ -43,7 +52,8 @@ const useLoginInfo = () => {
                 if (
                     location.pathname !== "/login" &&
                     location.pathname !== "/" &&
-                    location.pathname !== "/join"
+                    location.pathname !== "/join"&&
+                    !location.pathname.startsWith("/login/oauth2/code")
                 ) {
                     nav("/login");
                 }

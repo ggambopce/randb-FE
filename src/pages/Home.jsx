@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { replace, useNavigate } from "react-router-dom";
 import { logoutApi } from "../api/loginApi";
@@ -22,6 +22,16 @@ const Home = () => {
                 // 로그아웃 API 호출
                 await logoutApi(user.id);
 
+                // 추가: 소셜 사용자 로그아웃 처리 (백엔드에서 처리)
+                if (user.loginType === 'google' || user.loginType === 'naver') {
+                    await fetch(`http://localhost:8080/api/oauth2/unlink/${user.loginType}`, {
+                        method: "POST",
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+                        },
+                    });
+                }
+
                 // Redux 상태 초기화
                 dispatch(logout());
 
@@ -39,13 +49,23 @@ const Home = () => {
         }
     };
 
+    // useEffect(() => {
+    //     if (!isLoggedIn) {
+    //         // 로그인 상태가 아닐 경우 로그인 페이지로 이동
+    //         nav("/login", { replace: true });
+    //     }
+    // }, [isLoggedIn, nav]);
+
     return (
         <div>
             <Header title={"RED & BLUE 찬반토론"}
                 rightChild={
                     isLoggedIn ? (
                         <div>
-                            <span>{user?.username} 회원님</span>
+                            <span>
+                                {user?.username} 회원님{" "}
+                                {user?.loginType && <small>({user.loginType})</small>}
+                            </span>
                             <Button text={"로그아웃"} onClick={handleLogout} />
                         </div>
                     ) : (

@@ -2,6 +2,9 @@ import { useDispatch } from "react-redux";
 import { login } from "../../slices/loginSlice";
 import { replace, useNavigate } from "react-router-dom";
 import "./Login.css";
+import SocialLoginButtons from "../SocialLoginButtons";
+
+
 const Login = () => {
     const dispatch = useDispatch();
     const nav = useNavigate();
@@ -55,6 +58,8 @@ const Login = () => {
                 <input name="password" placeholder="비밀번호" type="password" required />
                 <button type="submit">로그인</button>
             </form>
+            <h2 className="OrText">또는</h2>
+            <SocialLoginButtons />
         </div>
     );
 };

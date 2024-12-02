@@ -1,0 +1,51 @@
+/* 소셜 로그인 버튼 컨테이너 */
+.SocialLoginButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* 버튼 간 간격 */
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto; /* 중앙 정렬 */
+}
+
+/* 소셜 로그인 버튼 공통 스타일 */
+.SocialLoginButtons button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Google 로그인 버튼 */
+.GoogleLoginButton {
+  background-color: #4285f4; /* Google 파란색 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 버튼 그림자 */
+}
+
+.GoogleLoginButton:hover {
+  background-color: #357ae8; /* Hover 시 더 진한 파란색 */
+  transform: translateY(-2px); /* 살짝 떠오르는 효과 */
+}
+
+/* Naver 로그인 버튼 */
+.NaverLoginButton {
+  background-color: #1ec800; /* Naver 녹색 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 버튼 그림자 */
+}
+
+.NaverLoginButton:hover {
+  background-color: #17a700; /* Hover 시 더 진한 녹색 */
+  transform: translateY(-2px); /* 살짝 떠오르는 효과 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .SocialLoginButtons button {
+    font-size: 14px; /* 작은 화면에서 글자 크기 축소 */
+    padding: 10px 15px; /* 버튼 크기 축소 */
+  }
+}

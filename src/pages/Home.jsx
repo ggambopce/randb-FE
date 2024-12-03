@@ -19,17 +19,16 @@ const Home = () => {
     // 로그아웃 처리
     const handleLogout = async () => {
         try {
-            const token = localStorage.getItem("accessToken");
-            if (token) {
+            if (user?.id) {
                 // 로그아웃 API 호출
-                await logoutApi();
-
+                await logoutApi(user.id);
+    
                 // Redux 상태 초기화
                 dispatch(logout());
-
+    
                 // 로컬 스토리지 초기화
                 localStorage.removeItem("accessToken");
-
+    
                 alert("로그아웃되었습니다.");
                 nav("/login", { replace: true }); // 로그인 페이지로 리디렉션
             } else {

@@ -17,9 +17,13 @@ export const login = async (credentials) => {
     return { accessToken, user };
   };
   
-  export const logoutApi = async () => {
-    const res = await axios.post(`${prefix}/logout`, null, {
-      withCredentials: true,
-    });
+  export const logoutApi = async (accountId) => {
+    const res = await axios.post(
+        `${prefix}/logout`,
+        { "account-id": accountId }, // account-id 전달
+        {
+            withCredentials: true,
+        }
+    );
     return res.data;
-  };
+};

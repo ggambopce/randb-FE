@@ -13,7 +13,10 @@ const usePost = (id) => {
         const fetchPost = async () => {
             try {
                 const result = await getOne(id); // getOne API 호출
-                if (!result) {
+                
+                if (result?.data?.post) {
+                    setCurPostItem(result.data.post); // 게시글 데이터 설정
+                } else {
                     throw new Error("존재하지 않는 토론입니다.");
                 }
                 setCurPostItem(result.data.post);
@@ -30,7 +33,7 @@ const usePost = (id) => {
         if (id) {
             fetchPost();
         }
-    }, [id]);
+    }, [id, nav]);
 
     return { curPostItem, loading, error }; // 상태 반환
 };

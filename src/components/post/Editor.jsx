@@ -16,11 +16,13 @@ const Editor = ({ initData,onSubmit}) => {
     useEffect(() => {
         if(initData){
             setInput({
-                ...initData
+                postTitle: initData.postTitle || "",
+                postContent: initData.postContent || "",
             })
         }
     }, [initData])
 
+    // 입력 필드 변경 핸들러
     const onChangeInput = (e) => {
         let name = e.target.name;
         let value = e.target.value;
@@ -31,6 +33,7 @@ const Editor = ({ initData,onSubmit}) => {
         })
     }
 
+    // 제출 버튼 클릭 핸들러
     const onClickSubmitButton = async () => {
         if (!input.postTitle || !input.postContent) {
             alert("모든 필드를 작성해주세요.");

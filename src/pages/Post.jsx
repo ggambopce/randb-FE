@@ -35,7 +35,7 @@ const Post = () => {
         rightChild={
           <div style={{ display: "flex", gap: "10px" }}>
             <Button
-              onClick={() => nav(`/updatepost/${params.id}`)}
+              onClick={() => nav(`/updatepost/${params.id}`, { state: curPostItem })}
               text={"수정하기"}
             />
             <Button

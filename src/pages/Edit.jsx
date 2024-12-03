@@ -1,17 +1,18 @@
-import { useParams, useNavigate, Navigate, replace } from "react-router-dom";
+import { useParams, useNavigate, useLocation, Navigate, replace } from "react-router-dom";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import Editor from "../components/post/Editor";
-import { useContext, useEffect, useState } from "react";
-import { PostDispatchContext, PostStateContext } from "../App";
+import { useContext } from "react";
+import { PostDispatchContext } from "../App";
 import usePost from "../hooks/usePost";
 
 const Edit = () => {
     const params = useParams();
     const nav = useNavigate();
     const { onDelete, onUpdate } = useContext(PostDispatchContext);
-    const curPostItem = usePost(params.id);
+    const location = useLocation();
     
+
     const onClickDelete = () => {
         if(
             window.confirm("토론을 정말 삭제할까요?")
@@ -31,7 +32,22 @@ const Edit = () => {
             nav("/", {replace: true});
         };    
     }
-        
+    // Post 컴포넌트에서 전달받은 데이터
+    const curPostItem = location.state;
+
+    // curPostItem이 없으면 usePost 훅을 사용하여 데이터 가져오기
+    const { curPostItem: fetchedPostItem, loading } = usePost(params.id);
+    const postData = curPostItem || fetchedPostItem;
+
+    // 게시글 데이터를 가져오는 중이거나 데이터가 없는 경우 처리
+    if (!curPostItem) {
+        return (
+            <div>
+                <Header title="로딩 중..." />
+                <p>게시글 데이터를 불러오는 중입니다.</p>
+            </div>
+        );
+    }
 
     return (
         <div>

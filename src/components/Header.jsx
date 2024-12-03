@@ -29,9 +29,12 @@ const Header = ({title, leftChild, rightChild}) => {
                     rightChild
                 ) : (
                     isLoggedIn ? (
-                        <span>{user?.username} 회원님</span>
+                        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                            <span>{user?.username} 회원님</span>
+                            <button onClick={handleLogout}>로그아웃</button>
+                        </div>
                     ) : (
-                        <button>로그인</button>
+                        <button onClick={() => window.location.href = "/login"}>로그인</button>
                     )
                 )}
             </div>

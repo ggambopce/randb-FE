@@ -3,6 +3,7 @@ import { login } from "../../slices/loginSlice";
 import { replace, useNavigate } from "react-router-dom";
 import "./Login.css";
 import SocialLoginButtons from "../SocialLoginButtons";
+import axios from "axios";
 
 
 const Login = () => {
@@ -17,26 +18,24 @@ const Login = () => {
         };
 
         try {
-            const response = await fetch("http://localhost:8080/api/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(loginData),
-            });
+            const response = await axios.post(
+                "http://localhost:8080/api/login", 
+                loginData,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    withCredentials: true, // 쿠키를 포함하는 요청
+                }
+            );
 
-            if (!response.ok) {
-                throw new Error("로그인 실패");
-            }
-
-            const data = await response.json();
-            const { accessToken, user } = data.data;
+            const { accessToken, user } = response.data.data;
 
             // Redux 상태 업데이트
             dispatch(login({ user, accessToken }));
 
             // Local Storage에 Access Token 저장
-            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("authToken", accessToken);
 
             alert("로그인 성공!");
             nav("/", {replace:true});

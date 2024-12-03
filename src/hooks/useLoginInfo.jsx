@@ -28,7 +28,8 @@ const useLoginInfo = () => {
 
             try {
                 const res = await getUserInfo(token); // 유저 정보 요청
-                const { username, id, roles, loginType } = res.data; // 필요한 정보 추출
+                const userInfo = res.data.data; // 응답의 data 객체 내의 user 정보
+                const { username, id, roles, loginType } = userInfo
                 
                 // Redux 상태 업데이트
                 dispatch(login({ user: { username, id, roles, loginType }, accessToken: token }));

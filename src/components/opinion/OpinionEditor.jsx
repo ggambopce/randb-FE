@@ -1,29 +1,50 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { useParams } from "react-router-dom";
+
 import "./OpinionEditor.css";
+import Button from "../Button";
 
-const OpinionEditor = ({ postId }) => {
-  const [opinionContent, setOpinionContent] = useState("");
-  const [opinionType, setOpinionType] = useState("RED");
+const OpinionEditor = ({ postId, onSubmit }) => {
+  const [input, setInput] = useState({
+    opinionContent: "",
+    opinionType: "RED",
+  });
+  const [loading, setLoading] = useState(false); // 로딩 상태 추가
 
-  const handleSubmit = async () => {
-    if (!opinionContent.trim()) {
+  // 입력 필드 변경 핸들러
+  const onChangeInput = (e) => {
+    const { name, value } = e.target;
+    setInput({
+      ...input,
+      [name]: value,
+    });
+  };
+
+  // 제출 버튼 클릭 핸들러
+  const onClickSubmitButton = async () => {
+    if (!input.opinionContent.trim()) {
       alert("의견 내용을 입력하세요.");
       return;
     }
 
+    if (typeof onSubmit !== "function") {
+      alert("의견 제출 기능이 정의되지 않았습니다.");
+      return;
+    }
+
+    setLoading(true); // 로딩 상태 활성화
     try {
-      // 의견 작성 API 호출
-      await axios.post(`http://localhost:8080/api/opinions`, {
-        postId,
-        opinionContent,
-        opinionType,
+      await onSubmit({
+        postId, // 게시글 ID
+        ...input, // 의견 데이터
       });
       alert("의견이 추가되었습니다.");
-      setOpinionContent(""); // 입력 필드 초기화
+      setInput({ opinionContent: "", opinionType: "RED" }); // 입력 필드 초기화
     } catch (err) {
-      console.error("의견 추가 실패:", err);
-      alert("의견을 추가하는 중 오류가 발생했습니다.");
+      console.error("의견 작성 중 오류 발생:", err);
+      alert("의견 작성 중 오류가 발생했습니다.");
+    } finally {
+      setLoading(false); // 로딩 상태 해제
     }
   };
 
@@ -31,18 +52,26 @@ const OpinionEditor = ({ postId }) => {
     <div className="opinion-editor">
       <h3>의견 작성</h3>
       <textarea
-        value={opinionContent}
-        onChange={(e) => setOpinionContent(e.target.value)}
+        name="opinionContent"
+        value={input.opinionContent}
+        onChange={onChangeInput}
         placeholder="의견을 입력하세요"
       />
       <select
-        value={opinionType}
-        onChange={(e) => setOpinionType(e.target.value)}
+        name="opinionType"
+        value={input.opinionType}
+        onChange={onChangeInput}
       >
         <option value="RED">RED</option>
         <option value="BLUE">BLUE</option>
       </select>
-      <button onClick={handleSubmit}>의견 추가</button>
+      <div className="button-section">
+        <Button
+          onClick={onClickSubmitButton}
+          text={loading ? "작성중..." : "의견 추가"} // 로딩 상태 표시
+          disabled={loading} // 로딩 중 버튼 비활성화
+        />
+      </div>
     </div>
   );
 };

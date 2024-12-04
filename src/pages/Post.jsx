@@ -50,7 +50,8 @@ const Post = () => {
   const handleOpinionSubmit = async (opinionData) => {
     try {
       const response = await addOpinion(opinionData); // 의견 추가 API 호출
-      console.log("의견 작성 성공:", response);
+    
+      setOpinions((prevOpinions) => [...prevOpinions, response.data]);
       alert("의견이 성공적으로 추가되었습니다!");
     } catch (err) {
       console.error("의견 작성 실패:", err);
@@ -84,8 +85,9 @@ const Post = () => {
         <OpinionSummaryItem postId={params.id} />
       ) : (
         <div>
-          <OpinionList postId={params.id} opinions={opinions}/>
+          <OpinionList postId={params.id} opinions={opinions} setOpinions={setOpinions}/>
           <OpinionEditor postId={params.id} onSubmit={handleOpinionSubmit} />
+          
         </div>
       )}
     </div>

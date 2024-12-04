@@ -1,19 +1,20 @@
 .opinion-item {
-  border: 1px solid #ffd8a8; /* 부드러운 오렌지 테두리 */
+  border: 1px solid #ffd6a5; /* 밝은 오렌지 테두리 */
   border-radius: 10px;
   padding: 15px;
   margin-bottom: 15px;
-  background-color: #fff7e6; /* 따뜻한 크림색 배경 */
+  background-color: #fff3e0; /* 따뜻한 베이지 색 배경 */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
   box-sizing: border-box;
+  position: relative;
 }
 
 .opinion-item.red {
-  border-left: 8px solid #ff6b6b; /* 밝은 빨강 */
+  border-left: 8px solid #ff8b94; /* 밝은 핑크빛 레드 */
 }
 
 .opinion-item.blue {
-  border-left: 8px solid #4dabf7; /* 밝은 파랑 */
+  border-left: 8px solid #74c0fc; /* 밝은 하늘색 */
 }
 
 .opinion-header {
@@ -22,30 +23,81 @@
   align-items: center;
   margin-bottom: 10px;
   font-size: 14px;
-  color: #495057; /* 중립적인 회색 */
+  color: #6c757d; /* 부드러운 회색 */
 }
 
 .opinion-header .opinion-type {
   font-weight: bold;
-  color: #d9480f; /* 진한 오렌지 */
+  color: #ff6f61; /* 따뜻한 레드 */
 }
 
 .opinion-header .opinion-user {
   font-style: italic;
-  color: #495057; /* 중립적인 회색 */
+  color: #6c757d; /* 부드러운 회색 */
 }
 
 .opinion-header .opinion-date {
   font-size: 12px;
-  color: #868e96; /* 흐릿한 회색 */
+  color: #adb5bd; /* 흐릿한 회색 */
 }
 
 .opinion-content {
   font-size: 16px;
   line-height: 1.6;
-  color: #343a40; /* 진한 회색 */
-  background-color: #ffffff; /* 흰색 배경 */
+  color: #5c677d; /* 부드러운 짙은 회색 */
+  background-color: #fffaf0; /* 부드러운 크림 배경 */
   border-radius: 8px;
   padding: 10px;
-  border: 1px solid #ffd8a8; /* 부드러운 오렌지 테두리 */
+  border: 1px solid #ffd6a5; /* 밝은 오렌지 테두리 */
+}
+
+.opinion-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.small-button {
+  font-size: 12px;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.edit-button {
+  background-color: #ffad94; /* 밝은 살구색 */
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #ff7d67; /* 더 따뜻한 살구 */
+}
+
+.delete-button {
+  background-color: #ffa8a8; /* 밝은 핑크 */
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #ff6b6b; /* 더 진한 핑크 */
+}
+
+.save-button {
+  background-color: #ffd43b; /* 밝은 노랑 */
+  color: white;
+}
+
+.save-button:hover {
+  background-color: #fcc419; /* 더 따뜻한 노랑 */
+}
+
+.cancel-button {
+  background-color: #ced4da; /* 부드러운 회색 */
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #adb5bd; /* 더 진한 회색 */
 }

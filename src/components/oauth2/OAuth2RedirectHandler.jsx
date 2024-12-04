@@ -11,6 +11,7 @@ const OAuth2RedirectHandler = () => {
         // 현재 URL에서 access-token 추출
         const urlParams = new URLSearchParams(window.location.search);
         const accessToken = urlParams.get("access-token");
+        const provider = urlParams.get("provider"); // Google 또는 Naver 등 소셜 로그인 제공자
 
         if (accessToken) {
             // 토큰을 로컬 스토리지에 저장
@@ -33,7 +34,8 @@ const OAuth2RedirectHandler = () => {
                                 user: {
                                     id: user.id,
                                     username: user.nickName,
-                                    loginType: user.loginType,
+                                    loginType: provider || user.loginType,
+                                    
                                 },
                                 accessToken: accessToken,
                             })
@@ -44,6 +46,7 @@ const OAuth2RedirectHandler = () => {
                     } else {
                         console.error("사용자 정보 불러오기 실패:", data.message);
                         alert("로그인에 실패했습니다.");
+                        nav("/login", { replace: true });
                     }
                 })
                 .catch((error) => {

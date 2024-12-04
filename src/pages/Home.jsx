@@ -21,15 +21,16 @@ const Home = () => {
         try {
             if (user?.id) {
                 // 로그아웃 API 호출
-                await logoutApi(user.id);
+                const response = await logoutApi(user.id);
     
                 // Redux 상태 초기화
                 dispatch(logout());
     
                 // 로컬 스토리지 초기화
-                localStorage.removeItem("accessToken");
+                localStorage.removeItem("authToken");
     
-                alert("로그아웃되었습니다.");
+                // 서버 응답 메시지 확인 후 알림
+                alert(response.data || "로그아웃되었습니다.");
                 nav("/login", { replace: true }); // 로그인 페이지로 리디렉션
             } else {
                 alert("로그아웃할 사용자가 없습니다.");

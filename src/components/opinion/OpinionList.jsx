@@ -21,7 +21,10 @@ const OpinionList = ({ opinions, setOpinions }) => {
       {opinions.length === 0 ? (
         <p>의견이 없습니다.</p>
       ) : (
-        opinions.map((opinion) => (
+        opinions
+        .filter((opinion) => opinion) // null 또는 undefined 방지
+        .map((opinion) => (
+          
           <OpinionItem
             key={opinion.id}
             opinion={opinion}

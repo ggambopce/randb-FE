@@ -10,11 +10,9 @@ export const login = async (credentials) => {
       withCredentials: true,
     });
   
-    const { accessToken, user } = res.data.data;
-    if (accessToken) {
-      localStorage.setItem("authToken", accessToken); // 토큰 저장
-    }
-    return { accessToken, user };
+    const { accessToken } = res.data.data;
+  
+    return { accessToken };
   };
   
   export const logoutApi = async (accountId) => {

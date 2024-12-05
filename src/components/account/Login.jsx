@@ -4,6 +4,7 @@ import { login } from "../../slices/loginSlice";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Login.css";
 import SocialLoginButtons from "../SocialLoginButtons";
+import { getUserInfo } from "../../api/memberApi";
 import axios from "axios";
 
 const Login = () => {
@@ -22,7 +23,7 @@ const Login = () => {
 
         try {
             // 로그인 요청
-            const loginResponse = await axios.post(
+            const response = await axios.post(
                 "http://localhost:8080/api/login",
                 loginData,
                 {
@@ -32,26 +33,19 @@ const Login = () => {
                     withCredentials: true, // 쿠키 포함
                 }
             );
-    
-            // 로그인 성공 시 AccessToken 가져오기
-            const { accessToken } = loginResponse.data.data;
-    
-            // AccessToken을 Authorization 헤더에 포함하여 사용자 정보 요청
-            const userInfoResponse = await axios.post(
-                "http://localhost:8080/api/userinfo",
-                null,
-                {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`, // JWT 토큰 포함
-                    },
-                    withCredentials: true,
-                }
-            );
 
-            const user = userInfoResponse.data.data;
+            // JWT AccessToken 가져오기
+            const accessToken = response.data.data.accessToken;
+
+            // JWT AccessToken을 로컬스토리지에 저장
+            localStorage.setItem("authToken", accessToken);
+            console.log("JWT AccessToken이 로컬스토리지에 저장되었습니다:", accessToken);
+    
+            // 사용자 정보 요청
+            const user = await getUserInfo(); // getUserInfo 함수 재사용
 
             // Redux 상태 업데이트
-            dispatch(login({ user, accessToken }));
+            dispatch(login({ user }));
 
             alert("로그인 성공!");
             nav("/", { replace: true });

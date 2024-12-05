@@ -1,20 +1,53 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { logoutApi } from "../api/loginApi";
-import { logout } from "../slices/loginSlice";
+import { login, logout } from "../slices/loginSlice";
+import { extractJwtToken } from "../util/JwtToken";
 
-import useLoginInfo from "../hooks/useLoginInfo";
+import { getUserInfo } from "../api/memberApi";
 
 import Header from "../components/Header";
 import Button from "../components/Button";
 import PostList from "../components/post/PostList";
+import axios from "axios";
 
 const Home = () => {
-    useLoginInfo(); // 로그인 상태 복원
     const dispatch = useDispatch();
     const nav = useNavigate();
     const { isLoggedIn, user } = useSelector((state) => state.loginSlice);
+
+
+     // 사용자 정보 요청 및 상태 업데이트
+     const fetchUserInfo = async () => {
+        try {
+            const token = extractJwtToken(); // 파라미터 또는 로컬스토리지에서 JWT 추출
+            if (!token) {
+                console.error("JWT 토큰이 없습니다. 로그인 페이지로 이동합니다.");
+                dispatch(logout());
+                nav("/login", { replace: true });
+                return;
+            }
+
+            // 사용자 정보 요청
+            const userInfo = await getUserInfo(token);
+
+            // Redux 상태 업데이트
+            dispatch(login({ user: userInfo }));
+        } catch (error) {
+            console.error("사용자 정보 요청 실패:", error);
+            alert("사용자 정보를 불러오지 못했습니다. 다시 로그인해주세요.");
+            dispatch(logout());
+            nav("/login", { replace: true });
+        }
+    };
+
+    // 사용자 정보 복원
+    useEffect(() => {
+        if (!isLoggedIn) {
+            fetchUserInfo(); // 사용자 정보 요청
+        }
+    }, [isLoggedIn, dispatch, nav]);
 
     // 로그아웃 처리
     const handleLogout = async () => {

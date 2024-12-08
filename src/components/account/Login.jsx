@@ -39,7 +39,6 @@ const Login = () => {
 
             // JWT AccessToken을 로컬스토리지에 저장
             localStorage.setItem("authToken", accessToken);
-            console.log("JWT AccessToken이 로컬스토리지에 저장되었습니다:", accessToken);
     
             // 사용자 정보 요청
             const user = await getUserInfo(); // getUserInfo 함수 재사용

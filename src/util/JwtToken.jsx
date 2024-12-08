@@ -5,7 +5,6 @@ export const extractJwtToken = () => {
     const accessTokenFromUrl = urlParams.get("access-token");
   
     if (accessTokenFromUrl) {
-      console.log("URL에서 JWT 토큰 추출:", accessTokenFromUrl);
 
       // URL에서 토큰 추출 후 로컬스토리지에 저장
       localStorage.setItem("authToken", accessTokenFromUrl);
@@ -14,10 +13,9 @@ export const extractJwtToken = () => {
   
     const storedToken = localStorage.getItem("authToken"); // 일반 로그인 저장 토큰
     if (storedToken) {
-      console.log("LocalStorage에서 JWT 토큰 추출:", storedToken);
       return storedToken;
     }
   
     return null; // 토큰이 없는 경우
-  };
+  };  
   

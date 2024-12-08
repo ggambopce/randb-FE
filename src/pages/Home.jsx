@@ -23,10 +23,8 @@ const Home = () => {
         try {
             const token = extractJwtToken(); // 파라미터 또는 로컬스토리지에서 JWT 추출
             if (!token) {
-                console.error("JWT 토큰이 없습니다. 로그인 페이지로 이동합니다.");
-                dispatch(logout());
-                nav("/login", { replace: true });
-                return;
+                console.warn("JWT 토큰이 없습니다. 사용자 정보 요청을 생략합니다.");
+                return; // 사용자 정보 요청 생략
             }
 
             // 사용자 정보 요청
@@ -38,7 +36,6 @@ const Home = () => {
             console.error("사용자 정보 요청 실패:", error);
             alert("사용자 정보를 불러오지 못했습니다. 다시 로그인해주세요.");
             dispatch(logout());
-            nav("/login", { replace: true });
         }
     };
 

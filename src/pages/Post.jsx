@@ -10,7 +10,6 @@ import OpinionEditor from "../components/opinion/OpinionEditor";
 import { addOpinion } from "../api/opinionApi"; // 의견 추가 API 함수
 import axios from "axios";
 
-
 const Post = () => {
   const params = useParams();
   const { curPostItem, loading, error, reload } = usePost(params.id);

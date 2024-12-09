@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./OpinionSummaryItem.css";
 
+// 로컬 스토리지에서 JWT 토큰 가져오기
+const getAuthToken = () => localStorage.getItem("authToken");
+
 const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
   const [summary, setSummary] = useState(null); // 요약 결과 상태
   const [loading, setLoading] = useState(false); // 로딩 상태
@@ -9,6 +12,13 @@ const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
   const [voteError, setVoteError] = useState(null); // 투표 에러 상태
   const [voteSuccess, setVoteSuccess] = useState(null); // 투표 성공 상태
 
+  // Axios 인스턴스 생성 (JWT 토큰 포함)
+  const axiosInstance = axios.create({
+    baseURL: "http://localhost:8080/api/user", // 공통 URL
+    headers: {
+      Authorization: `Bearer ${getAuthToken()}`, // JWT 토큰 추가
+    },
+  });
   // 요약된 의견 조회 및 요약 작성 API 호출
   const handleSummaryFetch = async () => {
     setLoading(true);
@@ -48,15 +58,21 @@ const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
     try {
       const votePayload = {
         postId: postId,
-        accountId: 1, // 실제 사용자 ID로 변경해야 함 (현재는 테스트용)
         voteType: voteType,
       };
-
+      console.log("Vote Payload:", votePayload); // 요청 데이터 확인
       const response = await axios.post(
         `http://localhost:8080/api/user/posts/votes`,
-        votePayload
+        votePayload,
+        {
+          headers: {
+            "Content-Type": "application/json", // 추가
+            Authorization: `Bearer ${getAuthToken()}`,
+          },
+        }
       );
 
+      console.log("Server Response:", response.data); // 서버 응답 확인
       setVoteSuccess(response.data.message);
     } catch (err) {
       console.error("투표 처리 중 오류 발생:", err);

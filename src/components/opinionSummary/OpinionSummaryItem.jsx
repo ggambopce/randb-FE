@@ -6,6 +6,8 @@ const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
   const [summary, setSummary] = useState(null); // 요약 결과 상태
   const [loading, setLoading] = useState(false); // 로딩 상태
   const [error, setError] = useState(null); // 에러 상태
+  const [voteError, setVoteError] = useState(null); // 투표 에러 상태
+  const [voteSuccess, setVoteSuccess] = useState(null); // 투표 성공 상태
 
   // 요약된 의견 조회 및 요약 작성 API 호출
   const handleSummaryFetch = async () => {
@@ -38,6 +40,30 @@ const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
     }
   };
 
+  // 투표 진행 API 호출
+  const handleVote = async (voteType) => {
+    setVoteError(null);
+    setVoteSuccess(null);
+
+    try {
+      const votePayload = {
+        postId: postId,
+        accountId: 1, // 실제 사용자 ID로 변경해야 함 (현재는 테스트용)
+        voteType: voteType,
+      };
+
+      const response = await axios.post(
+        `http://localhost:8080/api/user/posts/votes`,
+        votePayload
+      );
+
+      setVoteSuccess(response.data.message);
+    } catch (err) {
+      console.error("투표 처리 중 오류 발생:", err);
+      setVoteError("투표 처리 중 문제가 발생했습니다. 다시 시도해주세요.");
+    }
+  };
+
   // 컴포넌트가 마운트될 때 요약 데이터 로드
   useEffect(() => {
     handleSummaryFetch();
@@ -66,7 +92,23 @@ const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
             의견 요약 작성 및 조회
           </button>
         )}
+
+        {/* 투표 버튼 */}
+        {type === "VOTING" && (
+          <div className="vote-buttons">
+            <button onClick={() => handleVote("RED")} className="vote-red">
+              RED에 투표
+            </button>
+            <button onClick={() => handleVote("BLUE")} className="vote-blue">
+              BLUE에 투표
+            </button>
+          </div>
+        )}  
       </div>
+
+      {/* 투표 결과 메시지 */}
+      {voteSuccess && <p className="success-message">{voteSuccess}</p>}
+      {voteError && <p className="error-message">{voteError}</p>}
     </div>
   );
 };

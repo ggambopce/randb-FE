@@ -44,7 +44,7 @@ const Post = () => {
     return <div>에러 발생: {error}</div>;
   }
 
-  const { postTitle, postContent, username } = curPostItem;
+  const { postTitle, postContent, username, type } = curPostItem;
 
   // 의견 작성 함수
   const handleOpinionSubmit = async (opinionData) => {
@@ -79,7 +79,7 @@ const Post = () => {
           </div>
         }
       />
-      <Viewer postTitle={postTitle} postContent={postContent} username={username} />
+      <Viewer postTitle={postTitle} postContent={postContent} username={username} type={type} />
 
       {isSummaryView ? (
         <OpinionSummaryItem postId={params.id} />

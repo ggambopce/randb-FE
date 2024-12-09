@@ -11,7 +11,6 @@ const useLoginInfo = () => { // 일반로그인, 소셜로그인 통합처리
 
   useEffect(() => {
     if (!isLoggedIn) {
-      console.log("사용자가 로그인되지 않은 상태입니다. getUserInfo() 호출을 건너뜁니다.");
       return;
     }
 

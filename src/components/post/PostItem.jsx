@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Button from "../Button";
 import "./PostItem.css";
 
-const PostItem = ({id, postTitle, postContent}) => {
+const PostItem = ({id, postTitle, postContent, type}) => { // 토론글 상태 추가
     const nav = useNavigate();
     const { isLoggedIn } = useSelector((state) => state.loginSlice);
 
@@ -21,6 +21,8 @@ const PostItem = ({id, postTitle, postContent}) => {
             <div className="postContentWrapper">
                 <h3 className="postTitle">{postTitle}</h3>
                 <p className="postContent">{postContent}</p>
+                {/* 상태 표시 */}
+                <p className="postType">{type === "DISCUSSING" ? "토론 중" : type}</p>
             </div>
             <div className="postActionWrapper">
                 <Button 

@@ -23,7 +23,6 @@ const Home = () => {
         try {
             const token = extractJwtToken(); // 파라미터 또는 로컬스토리지에서 JWT 추출
             if (!token) {
-                console.warn("JWT 토큰이 없습니다. 사용자 정보 요청을 생략합니다.");
                 return; // 사용자 정보 요청 생략
             }
 

@@ -17,6 +17,7 @@ const Post = () => {
   const nav = useNavigate();
 
   const [opinions, setOpinions] = useState([]); // 의견 리스트 상태
+  const [summary, setSummary] = useState(null); // 요약 데이터 상태
   const [isSummaryLoading, setIsSummaryLoading] = useState(false); // 요약 버튼 상태
   const [isCompletingVote, setIsCompletingVote] = useState(false); // 투표완료 버튼 상태
   const [statistics, setStatistics] = useState(null); // 통계 데이터 상태
@@ -45,27 +46,47 @@ const Post = () => {
     }
   };
 
+  const fetchSummary = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/user/opinionSummary`, {
+        params: { postId: params.id },
+      });
+      setSummary(response.data.data); // 요약 데이터 상태 업데이트
+    } catch (err) {
+      console.error("요약 데이터 로드 실패:", err);
+    }
+  };
+
   // 컴포넌트 마운트 시 의견 데이터 로드
   useEffect(() => {
     fetchOpinions();
-    fetchStatistics(); // 통계 데이터는 항상 로드
-  }, [params.id]);
+    if (curPostItem?.type === "COMPLETED") {
+      fetchStatistics(); // '완료' 상태에서 통계 데이터 로드
+    }else if (curPostItem?.type === "VOTING") {
+      fetchSummary(); // '투표 중' 상태에서 요약 데이터 로드
+    }
+  }, [params.id, curPostItem?.type]);
 
   // 의견 요약 작성 API 호출
   const handleSummaryCreation = async () => {
     setIsSummaryLoading(true);
     try {
+      // 요약 작성 API 호출
       await axios.post(`http://localhost:8080/api/user/opinionSummary`, null, {
         params: { postId: params.id },
       });
       alert("의견 요약이 성공적으로 작성되었습니다!");
-      reload(); // Post 데이터 새로고침 (type 변경 반영)
-    } catch (err) {
-      console.error("의견 요약 실패:", err);
-      alert("요약 작성 중 오류가 발생했습니다. 다시 시도해주세요.");
-    } finally {
-      setIsSummaryLoading(false);
-    }
+
+      // 요약 데이터 상태를 업데이트
+    await fetchSummary();
+
+    reload();
+  } catch (err) {
+    console.error("요약 작성 중 오류 발생:", err);
+    alert("요약 작성 중 문제가 발생했습니다. 다시 시도해주세요.");
+  } finally {
+    setIsSummaryLoading(false);
+  }
   };
 
   // 투표 완료 API 호출
@@ -74,8 +95,16 @@ const Post = () => {
     try {
       await axios.post(`http://localhost:8080/api/user/posts/${params.id}/complete`);
       alert("투표가 완료되었습니다!");
-      await fetchStatistics(); // 통계 데이터 로드
+      
       reload(); // Post 상태 새로고침
+
+        // 통계 데이터를 즉시 로드 및 반영
+      const statisticsResponse = await axios.get(
+        `http://localhost:8080/api/user/posts/${params.id}/statistics`
+      );
+      setStatistics(statisticsResponse.data.data);
+
+      
     } catch (err) {
       console.error("투표 완료 실패:", err);
       alert("투표 완료 중 오류가 발생했습니다. 다시 시도해주세요.");
@@ -133,26 +162,26 @@ const Post = () => {
         username={username}
         type={type}
       />
-      {type === "DISCUSSING" ? (
-        <div>
-          {/* 의견 리스트 */}
+      {type === "DISCUSSING" && (
+        <>
           <OpinionList opinions={opinions} setOpinions={setOpinions} />
-          {/* 의견 작성 */}
           <OpinionEditor postId={params.id} onSubmit={handleOpinionSubmit} />
-        </div>
-      ) : type === "VOTING" ? (
-        statistics && (
-          <VoteResults
-            redVotes={statistics.redVotes}
-            blueVotes={statistics.blueVotes}
-            winningVoteType={statistics.winningVoteType}
-            redVotePercentage={statistics.redVotePercentage}
-            blueVotePercentage={statistics.blueVotePercentage}
-          />
-        )
-      ) : (
-        // 토론 완료 상태에서는 의견 요약 표시
+        </>
+      )}
+      {type === "VOTING" && (
         <OpinionSummaryItem postId={params.id} type={type} />
+      )}
+      {type === "COMPLETED" && (
+        <>
+          <VoteResults
+            redVotes={statistics?.redVotes}
+            blueVotes={statistics?.blueVotes}
+            winningVoteType={statistics?.winningVoteType}
+            redVotePercentage={statistics?.redVotePercentage}
+            blueVotePercentage={statistics?.blueVotePercentage}
+          />
+          <OpinionSummaryItem postId={params.id} type={type} />
+        </>
       )}
     </div>
   );

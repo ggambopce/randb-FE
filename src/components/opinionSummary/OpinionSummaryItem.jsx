@@ -45,8 +45,6 @@ const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
     }
   };
 
-  
-
 
   // 투표 진행 API 호출
   const handleVote = async (voteType) => {
@@ -83,6 +81,7 @@ const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
     fetchSummaryAndVotes();
   }, [postId]);
 
+  
   return (
     <div className="opinion-summary-item">
 
@@ -101,8 +100,8 @@ const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
 
       <div className="vote-results">
         <h3>투표 현황</h3>
-        <p>RED: {voteCounts.redVotes}표</p>
-        <p>BLUE: {voteCounts.blueVotes}표</p>
+        <p>RED <br></br>{voteCounts.redVotes}표</p>
+        <p>BLUE<br></br>{voteCounts.blueVotes}표</p>
       </div>
 
       <div className="action-buttons">
@@ -115,10 +114,10 @@ const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
         {type === "VOTING" && (
           <div className="vote-buttons">
             <button onClick={() => handleVote("RED")} className="vote-red">
-              RED에 투표
+              RED에 한표
             </button>
             <button onClick={() => handleVote("BLUE")} className="vote-blue">
-              BLUE에 투표
+              BLUE에 한표
             </button>
           </div>
         )}

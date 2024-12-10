@@ -70,3 +70,4 @@ const OpinionItem = ({ opinion, onOpinionUpdate, onOpinionDelete }) => {
 };
 
 export default OpinionItem;
+ 

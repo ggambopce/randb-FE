@@ -135,9 +135,7 @@ const Signup = () => {
                         value={formData.loginType}
                         onChange={handleChange}
                     >
-                        <option value="DEFAULT">기본 로그인</option>
-                        <option value="GOOGLE">구글 로그인</option>
-                        <option value="NAVER">네이버 로그인</option>
+                        <option value="DEFAULT">일반 로그인</option>
                     </select>
                 </div>
                 <button type="submit">회원가입</button>

@@ -133,17 +133,27 @@ const Post = () => {
         username={username}
         type={type}
       />
-      {statistics && (
-      <VoteResults
-        redVotes={statistics.redVotes}
-        blueVotes={statistics.blueVotes}
-        winningVoteType={statistics.winningVoteType}
-        redVotePercentage={statistics.redVotePercentage}
-        blueVotePercentage={statistics.blueVotePercentage}
-      />
+      {type === "DISCUSSING" ? (
+        <div>
+          {/* 의견 리스트 */}
+          <OpinionList opinions={opinions} setOpinions={setOpinions} />
+          {/* 의견 작성 */}
+          <OpinionEditor postId={params.id} onSubmit={handleOpinionSubmit} />
+        </div>
+      ) : type === "VOTING" ? (
+        statistics && (
+          <VoteResults
+            redVotes={statistics.redVotes}
+            blueVotes={statistics.blueVotes}
+            winningVoteType={statistics.winningVoteType}
+            redVotePercentage={statistics.redVotePercentage}
+            blueVotePercentage={statistics.blueVotePercentage}
+          />
+        )
+      ) : (
+        // 토론 완료 상태에서는 의견 요약 표시
+        <OpinionSummaryItem postId={params.id} type={type} />
       )}
-      <OpinionSummaryItem postId={params.id} type={type} />
-      
     </div>
   );
 };

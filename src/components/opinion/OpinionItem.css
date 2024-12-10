@@ -1,65 +1,60 @@
 .opinion-item {
-  border: 1px solid #ffd6a5; /* 밝은 오렌지 테두리 */
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 15px;
-  background-color: #fff3e0; /* 따뜻한 베이지 색 배경 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+  border: 1px solid #ffd8a8; /* Viewer와 동일한 테두리 */
+  border-radius: 10px; /* Viewer와 일치하는 둥근 모서리 */
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #fff7e6; /* Viewer와 같은 배경색 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Viewer와 동일한 그림자 */
   box-sizing: border-box;
   position: relative;
 }
 
 .opinion-item.red {
-  border-left: 8px solid #ff8b94; /* 밝은 핑크빛 레드 */
+  border-left: 8px solid #ff6b6b; /* 따뜻한 레드 */
 }
 
 .opinion-item.blue {
-  border-left: 8px solid #74c0fc; /* 밝은 하늘색 */
+  border-left: 8px solid #74c0fc; /* 하늘색 */
 }
 
 .opinion-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #6c757d; /* 부드러운 회색 */
+  margin-bottom: 15px; /* Viewer와 간격 맞춤 */
+  font-size: 23px;
+  color: #6c757d; /* Viewer와 유사한 중립 색상 */
 }
 
 .opinion-header .opinion-type {
   font-weight: bold;
-  color: #ff6f61; /* 따뜻한 레드 */
+  color: #ff6b6b; /* 따뜻한 레드 */
 }
 
 .opinion-header .opinion-user {
   font-style: italic;
-  color: #6c757d; /* 부드러운 회색 */
-}
-
-.opinion-header .opinion-date {
-  font-size: 12px;
-  color: #adb5bd; /* 흐릿한 회색 */
+  color: #6c757d;
 }
 
 .opinion-content {
-  font-size: 16px;
+  font-size: 22px;
   line-height: 1.6;
-  color: #5c677d; /* 부드러운 짙은 회색 */
-  background-color: #fffaf0; /* 부드러운 크림 배경 */
+  color: #495057; /* Viewer의 텍스트 색과 유사 */
+  background-color: #ffffff;
   border-radius: 8px;
-  padding: 10px;
-  border: 1px solid #ffd6a5; /* 밝은 오렌지 테두리 */
+  padding: 15px;
+  border: 1px solid #ffd8a8;
 }
 
 .opinion-actions {
   display: flex;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .small-button {
-  font-size: 12px;
-  padding: 5px 8px;
+  font-size: 16px;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -67,12 +62,12 @@
 }
 
 .edit-button {
-  background-color: #ffad94; /* 밝은 살구색 */
+  background-color: #ffad94; /* Viewer와 어울리는 살구색 */
   color: white;
 }
 
 .edit-button:hover {
-  background-color: #ff7d67; /* 더 따뜻한 살구 */
+  background-color: #ff7d67; /* 더 진한 살구 */
 }
 
 .delete-button {

@@ -5,7 +5,7 @@
   border-radius: 10px;
   border: 1px solid #ffd8a8; /* 부드러운 오렌지 */
   background-color: #fff7e6; /* 따뜻한 크림색 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
 }
 
@@ -27,13 +27,13 @@
 
 .summary-results {
   margin-top: 20px;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 18px;
+  line-height: 1.4;
   color: #343a40; /* 중립적인 회색 */
 }
 
 .summary-results h3 {
-  font-size: 20px;
+  font-size: 22px;
   color: #d9480f; /* 진한 오렌지 */
   margin-bottom: 10px;
 }

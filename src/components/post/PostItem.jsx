@@ -18,24 +18,25 @@ const PostItem = ({id, postTitle, postContent, type}) => { // 토론글 상태 �
 
     return (
         <div className="PostItem">
-            <div className="postContentWrapper">
-                <h3 className="postTitle">{postTitle}</h3>
-                <p className="postContent">{postContent}</p>
-                {/* 상태 표시 */}
-                <p className="postType">{type === "DISCUSSING"
-                        ? "토론 중"
-                        : type === "VOTING"
-                        ? "투표 중"
-                        : "토론 완료"}</p>
-            </div>
-            <div className="postActionWrapper">
-                <Button 
-                    onClick={handleParticipateClick}
-                    text={"참여하기"}
-                    type={"POSITIVE"} 
-                />
-            </div>
+        <span className={`postTypeBadge ${type.toLowerCase()}`}>
+          {type === "DISCUSSING"
+            ? "토론 중"
+            : type === "VOTING"
+            ? "투표 중"
+            : "토론 완료"}
+        </span>
+        <div className="postContentWrapper">
+          <h3 className="postTitle">{postTitle}</h3>
+          <p className="postContent">{postContent}</p>
         </div>
+    <div className="postActionWrapper">
+        <Button 
+            onClick={handleParticipateClick}
+            text={"참여하기"}
+            type={"POSITIVE"} 
+        />
+    </div>
+</div>
     );
 };
 

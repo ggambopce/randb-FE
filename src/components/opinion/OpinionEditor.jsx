@@ -57,6 +57,7 @@ const OpinionEditor = ({ postId, onSubmit }) => {
         onChange={onChangeInput}
         placeholder="의견을 입력하세요"
       />
+      <div className="input-row">
       <select
         name="opinionType"
         value={input.opinionType}
@@ -65,12 +66,11 @@ const OpinionEditor = ({ postId, onSubmit }) => {
         <option value="RED">RED</option>
         <option value="BLUE">BLUE</option>
       </select>
-      <div className="button-section">
-        <Button
-          onClick={onClickSubmitButton}
-          text={loading ? "작성중..." : "의견 추가"} // 로딩 상태 표시
-          disabled={loading} // 로딩 중 버튼 비활성화
-        />
+      <Button
+        onClick={onClickSubmitButton}
+        text={loading ? "작성중..." : "의견 추가"} // 로딩 상태 표시
+        disabled={loading} // 로딩 중 버튼 비활성화
+      />
       </div>
     </div>
   );

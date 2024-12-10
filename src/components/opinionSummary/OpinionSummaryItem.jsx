@@ -85,7 +85,6 @@ const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
 
   return (
     <div className="opinion-summary-item">
-      <h2>의견 요약</h2>
 
       {loading && <p>요청을 처리 중입니다...</p>}
       {error && <p className="error-message">{error}</p>}

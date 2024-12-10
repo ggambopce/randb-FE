@@ -1,14 +1,13 @@
 .Viewer {
   max-width: 1200px; /* 최대 너비를 설정하여 중앙 정렬 */
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9; /* 밝은 배경색 */
+  background-color: white; /* 밝은 배경색 */
   overflow: hidden;
+  position: relative; /* 내부 요소의 절대 위치 기준 */
   box-sizing: border-box;
 }
 
@@ -18,13 +17,13 @@
   background-color: #fff7e6; /* 따뜻한 크림색 */
   border-radius: 10px;
   border: 1px solid #ffd8a8; /* 부드러운 오렌지 테두리 */
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+  padding: 15px 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* 부드러운 그림자 */
   box-sizing: border-box; /* 패딩 포함 크기 계산 */
 }
 
 .post_main_section h4 {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: bold;
   color: #d9480f; /* 진한 오렌지 */
   margin-bottom: 10px;
@@ -33,18 +32,18 @@
 .title_wrapper,
 .content_wrapper {
   width: 100%; /* 부모 컨테이너에 맞춰 확장 */
-  padding: 10px 15px; /* 패딩 줄임 */
+  padding: 0px 15px; /* 패딩 줄임 */
   background-color: #ffffff;
   border-radius: 8px;
   border: 1px solid #ffd8a8;
-  font-size: 18px; /* 기존 폰트 크기 유지 */
-  line-height: 1.6; /* 기존 줄 간격 유지 */
+  font-size: 22px; /* 기존 폰트 크기 유지 */
+  line-height: 1.4; /* 기존 줄 간격 유지 */
   color: #343a40; /* 중립적인 회색 */
   box-sizing: border-box; /* 패딩 포함 크기 계산 */
 }
 
 .title_wrapper {
-  margin-bottom: 10px; /* 여백 줄임 */
+  margin-bottom: 8px; /* 여백 줄임 */
   font-weight: 600; /* 기존 폰트 두께 유지 */
   color: #495057; /* 더 진한 회색 */
 }
@@ -55,24 +54,34 @@
   border-color: #ff922b;
   transition: background-color 0.3s, border-color 0.3s;
 }
-
+/* 작성자 및 상태와 버튼 영역 */
 .post_side_section {
+  position: absolute; /* 상자 안의 절대 위치 */
+  top: 28px; /* 상단에서 10px 간격 */
+  right: 50px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  border-top: 1px solid #e9ecef;
-  padding-top: 15px;
+  align-items: flex-end; /* 오른쪽 정렬 */
+  gap: 3px; /* 요소 간 간격 */
 }
 
 .username_wrapper {
-  font-size: 14px;
+  font-size: 20px;
   color: #5b656e; /* 흐릿한 회색 */
+}
+/* 상태 표시 스타일 */
+.status_wrapper {
+  font-size: 20px;
+  font-weight: bold;
+  color: #d9480f; /* 진한 오렌지색 */
+  padding: 0px 10px;
+  background-color: #ffe8cc; /* 연한 오렌지 배경 */
+  border-radius: 5px;
 }
 
 .action_buttons {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   width: 100%;
   justify-content: center;
 }
@@ -80,22 +89,23 @@
 .like_button,
 .bookmark_button {
   flex: none; /* 버튼 크기 균등 */
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 3px 12px;
+  font-size: 14px;
   font-weight: bold;
   border-radius: 5px;
   border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .like_button {
-  background-color: #dfdb0e; /* 밝은 초록 */
+  background-color: #bed31f;
   color: #fff;
 }
 
 .like_button:hover {
-  background-color: #12b886; /* 더 진한 초록 */
+  background-color: #dfdb0e;
 }
 
 .bookmark_button {

@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import Viewer from "../components/post/Viewer";
 import usePost from "../hooks/usePost";
+import VoteResults from "../components/voteResult/VoteResults";
 import OpinionSummaryItem from "../components/opinionSummary/OpinionSummaryItem";
 import OpinionList from "../components/opinion/OpinionList";
 import OpinionEditor from "../components/opinion/OpinionEditor";
@@ -17,6 +18,8 @@ const Post = () => {
 
   const [opinions, setOpinions] = useState([]); // 의견 리스트 상태
   const [isSummaryLoading, setIsSummaryLoading] = useState(false); // 요약 버튼 상태
+  const [isCompletingVote, setIsCompletingVote] = useState(false); // 투표완료 버튼 상태
+  const [statistics, setStatistics] = useState(null); // 통계 데이터 상태
 
   // 의견 데이터 로드 함수
   const fetchOpinions = async () => {
@@ -30,9 +33,22 @@ const Post = () => {
     }
   };
 
+  // 투표 완료 후 통계 데이터 로드
+  const fetchStatistics = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/api/user/posts/${params.id}/statistics`
+      );
+      setStatistics(response.data);
+    } catch (err) {
+      console.error("통계 데이터 로드 실패:", err);
+    }
+  };
+
   // 컴포넌트 마운트 시 의견 데이터 로드
   useEffect(() => {
     fetchOpinions();
+    fetchStatistics(); // 통계 데이터는 항상 로드
   }, [params.id]);
 
   // 의견 요약 작성 API 호출
@@ -49,6 +65,22 @@ const Post = () => {
       alert("요약 작성 중 오류가 발생했습니다. 다시 시도해주세요.");
     } finally {
       setIsSummaryLoading(false);
+    }
+  };
+
+  // 투표 완료 API 호출
+  const handleCompleteVote = async () => {
+    setIsCompletingVote(true);
+    try {
+      await axios.post(`http://localhost:8080/api/user/posts/${params.id}/complete`);
+      alert("투표가 완료되었습니다!");
+      await fetchStatistics(); // 통계 데이터 로드
+      reload(); // Post 상태 새로고침
+    } catch (err) {
+      console.error("투표 완료 실패:", err);
+      alert("투표 완료 중 오류가 발생했습니다. 다시 시도해주세요.");
+    } finally {
+      setIsCompletingVote(false);
     }
   };
 
@@ -82,13 +114,17 @@ const Post = () => {
         rightChild={
           type === "DISCUSSING" ? (
             <Button
-              onClick={handleSummaryCreation} // 의견 요약 버튼
+              onClick={handleSummaryCreation}
               text={isSummaryLoading ? "요약 중..." : "의견 요약"}
-              disabled={isSummaryLoading} // 로딩 중 버튼 비활성화
+              disabled={isSummaryLoading}
             />
-          ) : (
-            <Button onClick={reload} text={"투표완료"} />
-          )
+          ) : type === "VOTING" ? (
+            <Button
+              onClick={handleCompleteVote}
+              text={isCompletingVote ? "완료 중..." : "투표완료"}
+              disabled={isCompletingVote}
+            />
+          ) : null // 투표 완료 상태에서는 버튼 없음
         }
       />
       <Viewer
@@ -97,19 +133,17 @@ const Post = () => {
         username={username}
         type={type}
       />
-
-      {type === "DISCUSSING" ? (
-        <div>
-          <OpinionList
-            postId={params.id}
-            opinions={opinions}
-            setOpinions={setOpinions}
-          />
-          <OpinionEditor postId={params.id} onSubmit={handleOpinionSubmit} />
-        </div>
-      ) : (
-        <OpinionSummaryItem postId={params.id} type={type} />
+      {statistics && (
+      <VoteResults
+        redVotes={statistics.redVotes}
+        blueVotes={statistics.blueVotes}
+        winningVoteType={statistics.winningVoteType}
+        redVotePercentage={statistics.redVotePercentage}
+        blueVotePercentage={statistics.blueVotePercentage}
+      />
       )}
+      <OpinionSummaryItem postId={params.id} type={type} />
+      
     </div>
   );
 };

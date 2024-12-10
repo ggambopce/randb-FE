@@ -45,6 +45,9 @@ const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
     }
   };
 
+  
+
+
   // 투표 진행 API 호출
   const handleVote = async (voteType) => {
     setVoteError(null);

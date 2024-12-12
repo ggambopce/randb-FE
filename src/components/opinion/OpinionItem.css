@@ -42,7 +42,7 @@
   color: #495057; /* Viewer의 텍스트 색과 유사 */
   background-color: #ffffff;
   border-radius: 8px;
-  padding: 15px;
+  padding: 0px 15px 15px;
   border: 1px solid #ffd8a8;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .small-button {
-  font-size: 16px;
+  font-size: px;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;

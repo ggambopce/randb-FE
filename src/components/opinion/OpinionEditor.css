@@ -9,6 +9,7 @@
 }
 
 .opinion-editor h3 {
+  margin-top: 0;
   margin-bottom: 15px;
   color: #d9480f; /* Viewer와 동일한 색 */
   font-size: 26px; /* Viewer 제목 크기와 맞춤 */

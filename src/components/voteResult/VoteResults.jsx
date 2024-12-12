@@ -9,12 +9,12 @@ const VoteResults = ({ redVotes, blueVotes, winningVoteType, redVotePercentage, 
         <div className="vote-result-item">
           <h3>RED</h3>
           <p>{redVotes}표</p>
-          <p>{redVotePercentage}%</p>
+          <p>{Number(redVotePercentage).toFixed(2)}%</p>
         </div>
         <div className="vote-result-item">
           <h3>BLUE</h3>
           <p>{blueVotes}표</p>
-          <p>{blueVotePercentage}%</p>
+          <p>{Number(blueVotePercentage).toFixed(2)}%</p>
         </div>
         <div className="vote-winner">
           <h3>승리</h3>

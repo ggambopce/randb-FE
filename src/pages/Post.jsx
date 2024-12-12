@@ -138,7 +138,7 @@ const Post = () => {
   return (
     <div>
       <Header
-        title={"토론 상세페이지"}
+        title={"토론의 장"}
         leftChild={<Button onClick={() => nav(-1)} text={"< 뒤로가기"} />}
         rightChild={
           type === "DISCUSSING" ? (

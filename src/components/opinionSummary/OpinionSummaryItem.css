@@ -1,7 +1,7 @@
 .opinion-summary-item {
   max-width: 1200px;
   margin: 20px auto;
-  padding: 20px;
+  padding: 0px 20px 20px;
   border-radius: 10px;
   border: 1px solid #ffd8a8; /* 부드러운 오렌지 */
   background-color: #fff7e6; /* 따뜻한 크림색 */
@@ -62,6 +62,7 @@
 }
 
 .vote-results h3 {
+
   font-size: 20px;
   color: #d9480f; /* 진한 오렌지 */
   margin-bottom: 15px;

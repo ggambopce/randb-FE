@@ -6,8 +6,10 @@
   justify-content: flex-start;
   min-height: 100vh;
   background-color: #fff7e6; /* 따뜻한 크림색 배경 */
+  border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-  padding: 20px;
+  margin: 20px;
+  padding: 0px;
 }
 
 /* 상단 헤더 */

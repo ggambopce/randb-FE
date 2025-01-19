@@ -1,13 +1,13 @@
 
 import "./Editor.css";
 import Button from "../Button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Editor = ({ initData,onSubmit}) => {
     const [input, setInput] = useState({
         postTitle: "",
-        postContent: "",
+        postContent: "", // 기본값 설정
     });
 
     const [loading, setLoading] = useState(false); // 로딩 상태 추가
@@ -22,10 +22,23 @@ const Editor = ({ initData,onSubmit}) => {
         }
     }, [initData])
 
+    const textareaRef = useRef(null);
+
     // 입력 필드 변경 핸들러
     const onChangeInput = (e) => {
         let name = e.target.name;
         let value = e.target.value;
+
+        // RED와 BLUE 강제 포함
+        if (name === "postContent") {
+            if (!value.includes("RED:") || !value.includes("BLUE:")) {
+                value = `토론 내용:\n\nRED:\nBLUE:`; // RED와 BLUE가 없으면 다시 추가
+            }
+            const cursorPosition = textareaRef.current.selectionStart; // 현재 커서 위치 저장
+            setTimeout(() => {
+                textareaRef.current.setSelectionRange(cursorPosition, cursorPosition); // 커서 복원
+            }, 0);
+        }
 
         setInput({
             ...input,
@@ -63,6 +76,7 @@ const Editor = ({ initData,onSubmit}) => {
                 placeholder="나누고 싶은 주제를 작성해주세요" />
             <h4>토론 내용</h4>
             <textarea
+                ref={textareaRef}
                 name="postContent"
                 value={input.postContent}
                 onChange={onChangeInput}

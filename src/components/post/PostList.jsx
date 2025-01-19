@@ -14,20 +14,27 @@ const PostList = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchPosts = async () => {
+      const fetchPosts = async () => {
           try {
-            const result = await mainPosts(); // API 호출
-            setData(result.data.posts);
-            setLoading(false);
+              const result = await mainPosts(); // API 호출
+              const posts = result.data.posts;
+              
+              // 상태에 따라 데이터 분리
+              const discussing = posts.filter((post) => post.postType === "DISCUSSING");
+              const voting = posts.filter((post) => post.postType === "VOTING");
+              const completed = posts.filter((post) => post.postType === "COMPLETED");
+              
+              setData({ discussing, voting, completed });
+              setLoading(false);
           } catch (err) {
-            console.error("Error fetching posts:", err);
-            setError("Failed to load posts.");
-            setLoading(false);
+              console.error("Error fetching posts:", err);
+              setError("Failed to load posts.");
+              setLoading(false);
           }
-        };
-    
-        fetchPosts();
-      }, []);
+      };
+
+      fetchPosts();
+  }, []);
 
       const handleNewPostClick = () => {
         if (isLoggedIn) {
@@ -55,8 +62,20 @@ const PostList = () => {
                 />
             </div>
             <div className="list_wrapper">
-                {data.map((item)=>
-                    <PostItem key={item.id} {...item}/>)}
+                <h2>토론중</h2>
+                {data.discussing.map((item) => (
+                    <PostItem key={item.id} {...item} />
+                ))}
+
+                <h2>투표중</h2>
+                {data.voting.map((item) => (
+                    <PostItem key={item.id} {...item} />
+                ))}
+
+                <h2>토론 완료</h2>
+                {data.completed.map((item) => (
+                    <PostItem key={item.id} {...item} />
+                ))}
             </div>
         </div>
     )

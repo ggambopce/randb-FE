@@ -16,9 +16,11 @@ const PostItem = ({id, postTitle, postContent, type}) => { // 토론글 상태 �
         }
     };
 
+    const postType = (type || "DISCUSSING").toLowerCase();
+
     return (
         <div className="PostItem">
-        <span className={`postTypeBadge ${type.toLowerCase()}`}>
+        <span className={`postTypeBadge ${postType}`}>
           {type === "DISCUSSING"
             ? "토론 중"
             : type === "VOTING"

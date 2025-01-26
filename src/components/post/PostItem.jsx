@@ -16,7 +16,7 @@ const PostItem = ({id, postTitle, postContent, type}) => { // 토론글 상태 �
         }
     };
 
-    const postType = (type || "DISCUSSING").toLowerCase();
+    const postType = type || "DISCUSSING";
 
     return (
         <div className="PostItem">

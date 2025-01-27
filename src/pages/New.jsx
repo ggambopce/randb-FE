@@ -13,7 +13,6 @@ const New = () => {
             await addPost({
                 postTitle: input.postTitle,
                 postContent: input.postContent,
-                account_id: 1, // account_id는 인증된 사용자의 데이터를 사용
             });
             nav("/", { replace: true }); // 메인 페이지로 이동
         } catch (err) {

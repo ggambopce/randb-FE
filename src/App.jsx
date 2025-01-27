@@ -8,6 +8,7 @@ import Notfound from './pages/Notfound';
 import LoginPage from './pages/LoginPage';
 import Join from './pages/Join';
 import useLoginInfo from './hooks/useLoginInfo';
+import ProfileNew from './pages/ProfileNew';
 
 function App() { 
   useLoginInfo(); // 로그인 상태 복원
@@ -20,6 +21,7 @@ function App() {
       <Route path="/updatepost/:id" element={<Edit />}/>
       <Route path="/login" element={<LoginPage />}/>
       <Route path="/join" element={<Join />}/>
+      <Route path="/newprofile" element={<ProfileNew />}/>
       <Route path="*" element={<Notfound />} />
     </Routes>
   )

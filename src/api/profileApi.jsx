@@ -34,3 +34,12 @@ export const addProfile = async(profileData, file) => {
   return res.data; // 서버 응답 데이터 반환
 
 }
+
+export const getOneProfile = async(id) => {
+
+    const res = await axios.get(`${prefix}/user/profiles/${id}`);
+    return res.data; // 서버 응답 데이터 반환
+}
+
+
+

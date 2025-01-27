@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getOneProfile } from "../api/profileApi";
+import { getOneProfile } from "../../api/profileApi";
 
 const ViewerProfile = ({ profileId }) => {
   const [profile, setProfile] = useState(null);

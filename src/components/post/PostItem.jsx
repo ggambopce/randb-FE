@@ -18,7 +18,7 @@ const PostItem = ({id, postTitle, postContent, postType}) => { // 토론글 상�
 
     return (
         <div className="PostItem">
-        <span className={`postTypeBadge ${postType}`}>
+        <span className={`postTypeBadge ${postType.toLowerCase()}`}>
           {postType === "DISCUSSING"
             ? "토론 중"
             : postType === "VOTING"

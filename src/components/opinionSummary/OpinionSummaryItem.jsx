@@ -5,7 +5,7 @@ import "./OpinionSummaryItem.css";
 // 로컬 스토리지에서 JWT 토큰 가져오기
 const getAuthToken = () => localStorage.getItem("authToken");
 
-const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
+const OpinionSummaryItem = ({ postId, postType, reloadPost }) => {
   const [summary, setSummary] = useState(null); // 요약 결과 상태
   const [voteCounts, setVoteCounts] = useState({ redVotes: 0, blueVotes: 0 }); // 투표 결과 상태
   const [loading, setLoading] = useState(false); // 로딩 상태
@@ -105,13 +105,13 @@ const OpinionSummaryItem = ({ postId, type, reloadPost }) => {
       </div>
 
       <div className="action-buttons">
-        {type === "DISCUSSING" && (
+        {postType === "DISCUSSING" && (
           <button onClick={fetchSummaryAndVotes} className="fetch-button">
             의견 요약 작성 및 조회
           </button>
         )}
 
-        {type === "VOTING" && (
+        {postType === "VOTING" && (
           <div className="vote-buttons">
             <button onClick={() => handleVote("RED")} className="vote-red">
               RED에 한표

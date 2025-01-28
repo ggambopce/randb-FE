@@ -77,7 +77,7 @@ const Home = () => {
                 rightChild={
                     isLoggedIn ? (
                         <div>
-                            <span>{user?.username} 님</span>
+                            <span>{user?.nickname} 님</span>
                             <Button text={"로그아웃"} onClick={handleLogout} />
                         </div>
                     ) : (

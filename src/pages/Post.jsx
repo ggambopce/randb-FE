@@ -11,6 +11,9 @@ import OpinionEditor from "../components/opinion/OpinionEditor";
 import { addOpinion } from "../api/opinionApi"; // 의견 추가 API 함수
 import axios from "axios";
 
+// 로컬 스토리지에서 JWT 토큰 가져오기
+const getAuthToken = () => localStorage.getItem("authToken");
+
 const Post = () => {
   const params = useParams();
   const { curPostItem, loading, error, reload } = usePost(params.id);
@@ -68,18 +71,23 @@ const Post = () => {
   }, [params.id, curPostItem?.postType]);
 
   // 의견 요약 작성 API 호출
-  const handleSummaryCreation = async () => {
+  const handleSummaryCreation = async (postData) => {
     setIsSummaryLoading(true);
+    const token = getAuthToken();
     try {
       // 요약 작성 API 호출
-      await axios.post(`http://localhost:8080/api/user/opinionSummary`, null, {
+      await axios.post(`http://localhost:8080/api/user/opinionSummary`,
+        null, 
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         params: { postId: params.id },
       });
-      alert("의견 요약이 성공적으로 작성되었습니다!");
 
+      alert("의견 요약이 성공적으로 작성되었습니다!");
       // 요약 데이터 상태를 업데이트
     await fetchSummary();
-
     reload();
   } catch (err) {
     console.error("요약 작성 중 오류 발생:", err);

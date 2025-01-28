@@ -1,6 +1,11 @@
 import axios from "axios";
 
-const prefix = "http://localhost:8080/api"; // API 기본 URL
+export const API_SERVER_HOST = 'http://localhost:8080'
+
+const prefix = `${API_SERVER_HOST}/api` 
+
+// 로컬 스토리지에서 JWT 토큰 가져오기
+const getAuthToken = () => localStorage.getItem("authToken");
 
 /**
  * 의견 요약 API 호출 함수

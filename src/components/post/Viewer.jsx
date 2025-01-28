@@ -24,7 +24,6 @@ const Viewer = ({
         <button className="like_button" onClick={onLike}>
             좋아요 {likeCount > 0 && `(${likeCount})`}
           </button>
-          <button className="bookmark_button">즐겨찾기</button>
         </div>
       </section>
 

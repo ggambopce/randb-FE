@@ -60,12 +60,12 @@ const Post = () => {
   // 컴포넌트 마운트 시 의견 데이터 로드
   useEffect(() => {
     fetchOpinions();
-    if (curPostItem?.type === "COMPLETED") {
+    if (curPostItem?.postType === "COMPLETED") {
       fetchStatistics(); // '완료' 상태에서 통계 데이터 로드
-    }else if (curPostItem?.type === "VOTING") {
+    }else if (curPostItem?.postType === "VOTING") {
       fetchSummary(); // '투표 중' 상태에서 요약 데이터 로드
     }
-  }, [params.id, curPostItem?.type]);
+  }, [params.id, curPostItem?.postType]);
 
   // 의견 요약 작성 API 호출
   const handleSummaryCreation = async () => {
@@ -121,7 +121,7 @@ const Post = () => {
     return <div>에러 발생: {error}</div>;
   }
 
-  const { postTitle, postContent, username, type } = curPostItem;
+  const { postTitle, postContent, username, postType } = curPostItem;
 
   // 의견 작성 함수
   const handleOpinionSubmit = async (opinionData) => {
@@ -141,13 +141,13 @@ const Post = () => {
         title={"토론의 장"}
         leftChild={<Button onClick={() => nav(-1)} text={"< 뒤로가기"} />}
         rightChild={
-          type === "DISCUSSING" ? (
+          postType === "DISCUSSING" ? (
             <Button
               onClick={handleSummaryCreation}
               text={isSummaryLoading ? "요약 중..." : "의견 요약"}
               disabled={isSummaryLoading}
             />
-          ) : type === "VOTING" ? (
+          ) : postType === "VOTING" ? (
             <Button
               onClick={handleCompleteVote}
               text={isCompletingVote ? "완료 중..." : "투표완료"}
@@ -160,18 +160,18 @@ const Post = () => {
         postTitle={postTitle}
         postContent={postContent}
         username={username}
-        type={type}
+        postType={postType}
       />
-      {type === "DISCUSSING" && (
+      {postType === "DISCUSSING" && (
         <>
           <OpinionList opinions={opinions} setOpinions={setOpinions} />
           <OpinionEditor postId={params.id} onSubmit={handleOpinionSubmit} />
         </>
       )}
-      {type === "VOTING" && (
-        <OpinionSummaryItem postId={params.id} type={type} />
+      {postType === "VOTING" && (
+        <OpinionSummaryItem postId={params.id} postType={postType} />
       )}
-      {type === "COMPLETED" && (
+      {postType === "COMPLETED" && (
         <>
           <VoteResults
             redVotes={statistics?.redVotes}
@@ -180,7 +180,7 @@ const Post = () => {
             redVotePercentage={statistics?.redVotePercentage}
             blueVotePercentage={statistics?.blueVotePercentage}
           />
-          <OpinionSummaryItem postId={params.id} type={type} />
+          <OpinionSummaryItem postId={params.id} postType={postType} />
         </>
       )}
     </div>

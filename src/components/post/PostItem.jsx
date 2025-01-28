@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Button from "../Button";
 import "./PostItem.css";
 
-const PostItem = ({id, postTitle, postContent, type}) => { // 토론글 상태 추가
+const PostItem = ({id, postTitle, postContent, postType}) => { // 토론글 상태 추가
     const nav = useNavigate();
     const { isLoggedIn } = useSelector((state) => state.loginSlice);
 
@@ -16,14 +16,12 @@ const PostItem = ({id, postTitle, postContent, type}) => { // 토론글 상태 �
         }
     };
 
-    const postType = type || "DISCUSSING";
-
     return (
         <div className="PostItem">
         <span className={`postTypeBadge ${postType}`}>
-          {type === "DISCUSSING"
+          {postType === "DISCUSSING"
             ? "토론 중"
-            : type === "VOTING"
+            : postType === "VOTING"
             ? "투표 중"
             : "토론 완료"}
         </span>

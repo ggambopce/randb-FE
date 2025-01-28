@@ -1,12 +1,18 @@
 import "./Viewer.css";
 
-const Viewer = ({ postTitle, postContent, nickname, type, likeCount, onLike }) => { // 토론글 상태 추가
+const Viewer = ({ 
+    postTitle, 
+    postContent, 
+    nickname, 
+    postType, 
+    likeCount, 
+    onLike }) => { // 토론글 상태 추가
   return (
     <div className="Viewer">
       <section className="post_side_section"> 
         {/* 토론 상태 표시 */}
         <div className="status_wrapper">
-          <span>{type === "DISCUSSING" ? "토론 중" : type === "VOTING" ? "투표 중" : "토론 완료"}</span>
+          <span>{postType === "DISCUSSING" ? "토론 중" : postType === "VOTING" ? "투표 중" : "토론 완료"}</span>
         </div>
         {/* 작성자 */}
         {nickname && (

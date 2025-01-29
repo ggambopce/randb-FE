@@ -1,12 +1,41 @@
 import "./Viewer.css";
+import { updatePost, deletePost } from "../../api/postApi";
+import { useNavigate } from "react-router-dom";
 
 const Viewer = ({ 
+    id,
     postTitle, 
     postContent, 
     nickname, 
     postType, 
     likeCount, 
     onLike }) => { // 토론글 상태 추가
+      const nav = useNavigate();
+
+    // 수정 페이지로 이동하는 함수
+    const handleEdit = () => {
+      nav(`/updatepost/${id}`, { 
+          state: { id, postTitle, postContent, nickname, postType } 
+      });
+  };
+
+  // 게시글 삭제 함수
+  const handleDelete = async () => {
+      const confirmDelete = window.confirm("정말 이 게시글을 삭제하시겠습니까?");
+      if (confirmDelete) {
+          try {
+              await deletePost(id);
+              alert("게시글이 삭제되었습니다.");
+              nav("/"); // 삭제 후 메인 페이지로 이동
+          } catch (error) {
+              console.error("게시글 삭제 실패:", error);
+              alert("게시글 삭제에 실패했습니다.");
+          }
+      }
+  };
+
+
+
   return (
     <div className="Viewer">
       <section className="post_side_section"> 
@@ -24,6 +53,8 @@ const Viewer = ({
         <button className="like_button" onClick={onLike}>
             좋아요 {likeCount > 0 && `(${likeCount})`}
           </button>
+          <button className="edit_button" onClick={handleEdit}>수정</button>
+          <button className="delete_button" onClick={handleDelete}>삭제</button>
         </div>
       </section>
 

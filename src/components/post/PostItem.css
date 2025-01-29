@@ -71,19 +71,6 @@
   text-align: right;
 }
 
-/* 좋아요 버튼 */
-.likeButton {
-  padding: 6px 12px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #ffebcc;
-  color: #d9480f;
-  border: 1px solid #ffb74d;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
 /* 버튼 스타일 */
 .postActionWrapper button {
   padding: 8px 16px;

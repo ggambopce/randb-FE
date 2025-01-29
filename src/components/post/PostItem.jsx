@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Button from "../Button";
 import "./PostItem.css";
 
-const PostItem = ({id, postTitle, postContent, postType}) => { // 토론글 상태 추가
+const PostItem = ({id, postTitle, postContent, nickname, likeCount, postType}) => { // 토론글 상태 추가
     const nav = useNavigate();
     const { isLoggedIn } = useSelector((state) => state.loginSlice);
 
@@ -26,17 +26,28 @@ const PostItem = ({id, postTitle, postContent, postType}) => { // 토론글 상�
             : "토론 완료"}
         </span>
         <div className="postContentWrapper">
+             {/* 닉네임 표시 */}
+             {nickname && (
+                    <div className="nicknameWrapper">
+                        <span>작성자: <strong>{nickname}</strong></span>
+                    </div>
+                )}
           <h3 className="postTitle">{postTitle}</h3>
           <p className="postContent">{postContent}</p>
         </div>
-    <div className="postActionWrapper">
-        <Button 
-            onClick={handleParticipateClick}
-            text={"참여하기"}
-            type={"POSITIVE"} 
-        />
-    </div>
-</div>
+
+        <div className="postActionWrapper">
+            {/* 좋아요 버튼 */}
+            <button className="likeButton">
+                    👍 좋아요 {}
+                </button>
+                <Button 
+                    onClick={handleParticipateClick}
+                    text={"참여하기"}
+                    type={"POSITIVE"} 
+                />
+            </div>
+        </div>
     );
 };
 

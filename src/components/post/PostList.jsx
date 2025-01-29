@@ -62,17 +62,15 @@ const PostList = () => {
                 />
             </div>
             <div className="list_wrapper">
-                <h2>토론중</h2>
+    
                 {data.discussing.map((item) => (
                     <PostItem key={item.id} {...item} />
                 ))}
 
-                <h2>투표중</h2>
                 {data.voting.map((item) => (
                     <PostItem key={item.id} {...item} />
                 ))}
 
-                <h2>토론 완료</h2>
                 {data.completed.map((item) => (
                     <PostItem key={item.id} {...item} />
                 ))}

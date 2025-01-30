@@ -3,7 +3,7 @@ import "./OpinionItem.css";
 import { updateOpinion, deleteOpinion } from "../../api/opinionApi";
 
 const OpinionItem = ({ opinion, onOpinionUpdate, onOpinionDelete }) => {
-  const { id, opinionContent, username, opinionType, create_at } = opinion;
+  const { id, opinionContent, nickname, opinionType, create_at } = opinion;
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(opinionContent);
 
@@ -36,7 +36,7 @@ const OpinionItem = ({ opinion, onOpinionUpdate, onOpinionDelete }) => {
     <div className={`opinion-item ${opinionType.toLowerCase()}`}>
       <div className="opinion-header">
         <strong className="opinion-type">{opinionType}</strong>
-        <span className="opinion-user">작성자: {username}</span>
+        <span className="opinion-user">작성자: {nickname}</span>
         <span className="opinion-date">{new Date(create_at).toLocaleString()}</span>
       </div>
       {isEditing ? (

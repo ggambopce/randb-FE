@@ -165,6 +165,7 @@ const Post = () => {
         }
       />
       <Viewer
+        id={curPostItem.id}
         postTitle={postTitle}
         postContent={postContent}
         nickname={nickname}

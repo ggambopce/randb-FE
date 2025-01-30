@@ -36,8 +36,17 @@ const OpinionItem = ({ opinion, onOpinionUpdate, onOpinionDelete }) => {
     <div className={`opinion-item ${opinionType.toLowerCase()}`}>
       <div className="opinion-header">
         <strong className="opinion-type">{opinionType}</strong>
+        <div className="opinion-meta">
         <span className="opinion-user">작성자: {nickname}</span>
-        <span className="opinion-date">{new Date(create_at).toLocaleString()}</span>
+        <span className="opinion-date">{new Date(create_at).toLocaleString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false, // 24시간 형식 유지
+  })}</span>
+  </div>
       </div>
       {isEditing ? (
         <div className="opinion-edit">

@@ -173,8 +173,8 @@ const Post = () => {
       />
       {postType === "DISCUSSING" && (
         <>
-          <OpinionList opinions={opinions} setOpinions={setOpinions} />
           <OpinionEditor postId={params.id} onSubmit={handleOpinionSubmit} />
+          <OpinionList opinions={opinions} setOpinions={setOpinions} />
         </>
       )}
       {postType === "VOTING" && (

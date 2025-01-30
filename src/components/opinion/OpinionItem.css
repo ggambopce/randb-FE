@@ -26,6 +26,13 @@
   color: #6c757d; /* Viewer와 유사한 중립 색상 */
 }
 
+/* 작성자와 날짜를 함께 그룹화 */
+.opinion-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* 작성자와 날짜 사이 간격 조정 */
+}
+
 .opinion-header .opinion-type {
   font-weight: bold;
   color: #ff6b6b; /* 따뜻한 레드 */
@@ -34,6 +41,13 @@
 .opinion-header .opinion-user {
   font-style: italic;
   color: #6c757d;
+}
+
+/* 날짜 스타일 */
+.opinion-header .opinion-date {
+  font-style: italic;
+  color: #868e96; /* 연한 회색 */
+  font-size: 18px; /* 날짜를 조금 작게 */
 }
 
 .opinion-content {

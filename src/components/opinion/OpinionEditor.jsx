@@ -38,7 +38,6 @@ const OpinionEditor = ({ postId, onSubmit }) => {
         postId, // 게시글 ID
         ...input, // 의견 데이터
       });
-      alert("의견이 추가되었습니다.");
       setInput({ opinionContent: "", opinionType: "RED" }); // 입력 필드 초기화
     } catch (err) {
       console.error("의견 작성 중 오류 발생:", err);

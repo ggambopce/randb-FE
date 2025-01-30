@@ -1,6 +1,8 @@
 import "./Viewer.css";
 import { updatePost, deletePost } from "../../api/postApi";
 import { useNavigate } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+
 
 const Viewer = ({ 
     id,
@@ -10,7 +12,11 @@ const Viewer = ({
     postType, 
     likeCount, 
     onLike }) => { // 토론글 상태 추가
-      const nav = useNavigate();
+    
+    const nav = useNavigate();
+    const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null); 
+
 
     // 수정 페이지로 이동하는 함수
     const handleEdit = () => {
@@ -34,6 +40,19 @@ const Viewer = ({
       }
   };
 
+  // 외부 클릭 시 드롭다운 닫기
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
 
 
   return (
@@ -43,6 +62,16 @@ const Viewer = ({
         <div className="status_wrapper">
           <span>{postType === "DISCUSSING" ? "토론 중" : postType === "VOTING" ? "투표 중" : "토론 완료"}</span>
         </div>
+        {/* 더보기 버튼 */}
+        <div className="more_options" ref={menuRef}>
+    <button onClick={() => setMenuOpen(!menuOpen)}>⋮</button>
+    {menuOpen && (
+      <div className="dropdown_menu">
+        <button onClick={() => { handleEdit(); setMenuOpen(false); }}>수정</button>
+        <button className="text-red-600" onClick={() => { handleDelete(); setMenuOpen(false); }}>삭제</button>
+      </div>
+    )}
+</div>
         {/* 작성자 */}
         {nickname && (
           <div className="username_wrapper">
@@ -53,8 +82,7 @@ const Viewer = ({
         <button className="like_button" onClick={onLike}>
             좋아요 {likeCount > 0 && `(${likeCount})`}
           </button>
-          <button className="edit_button" onClick={handleEdit}>수정</button>
-          <button className="delete_button" onClick={handleDelete}>삭제</button>
+        
         </div>
       </section>
 

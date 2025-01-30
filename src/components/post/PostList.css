@@ -4,6 +4,66 @@
   gap: 10px;
 }
 
+/*  검색 바 스타일 */
+.PostList .search_bar {
+  display: flex;
+  gap: 10px;
+  margin: 20px auto;
+  padding: 12px;
+  background-color: #fff7e6; /* PostItem과 일관된 크림색 */
+  border-radius: 10px;
+  border: 1px solid #ffd8a8; /* PostItem과 동일한 테두리 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+/* 🔍 검색 입력 필드 */
+.PostList .search_bar input {
+  flex: 1;
+  padding: 10px 15px;
+  font-size: 18px;
+  border: 1px solid #ffd8a8; /* 테두리 추가 */
+  border-radius: 10px;
+  background-color: #fffaed; /* 더 연한 크림색 */
+  outline: none;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+  transition: all 0.2s ease-in-out;
+}
+
+.PostList .search_bar input:focus {
+  background-color: white;
+  border-color: #ff922b;
+  box-shadow: 0 0 8px rgba(255, 146, 43, 0.4);
+}
+
+/* 🎛 검색 필터 버튼 스타일 */
+.PostList .search_bar button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  background-color: #ffdfb3; /* 부드러운 오렌지 */
+  color: #d9480f; /* 어두운 오렌지 */
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  font-weight: bold;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.PostList .search_bar button:hover {
+  background-color: #ffbf80;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* 🔵 필터 버튼 활성화 효과 */
+.PostList .search_bar button.active {
+  background-color: #ff922b; /* PostItem 버튼과 동일한 오렌지색 */
+  color: white;
+  font-weight: bold;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
 .PostList .menu_bar select {
   background-color: rgb(236, 236, 236);
   border: none;

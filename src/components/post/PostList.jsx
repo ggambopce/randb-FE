@@ -44,7 +44,7 @@ const PostList = () => {
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
             fetchPosts();
-        }, 500);
+        }, 300);
 
         return () => clearTimeout(delayDebounceFn);
     }, [searchKeyword, postType, fetchPosts]);
@@ -72,7 +72,7 @@ const PostList = () => {
             <div className="search_bar">
                 <input
                     type="text"
-                    placeholder="검색어 입력"
+                    placeholder="토론 제목을 검색해주세요"
                     value={searchKeyword}
                     onChange={(e) => setSearchKeyword(e.target.value)}
                 />

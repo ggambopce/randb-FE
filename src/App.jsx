@@ -10,7 +10,6 @@ import Join from './pages/Join';
 import useLoginInfo from './hooks/useLoginInfo';
 import ProfileNew from './pages/ProfileNew';
 import Profile from './pages/Profile';
-import SearchList from './pages/SearchList'; 
 
 function App() { 
   useLoginInfo(); // 로그인 상태 복원
@@ -21,7 +20,6 @@ function App() {
       <Route path="/newpost" element={<New />}/>
       <Route path="/detailpost/:id" element={<Post />}/>
       <Route path="/updatepost/:id" element={<Edit />}/>
-      <Route path="/searchlist" element={<SearchList />}/>
       <Route path="/login" element={<LoginPage />}/>
       <Route path="/join" element={<Join />}/>
       <Route path="/newprofile" element={<ProfileNew />}/>

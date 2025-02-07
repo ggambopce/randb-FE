@@ -37,7 +37,7 @@ export const addOpinion = async (opinionData) => {
 export const updateOpinion = async (id, opinionData) => {
   const token = getAuthToken();
   const res = await axios.post(
-      `${prefix}/user/opinions/${id}`,
+      `${prefix}/user/update/opinions/${id}`,
       opinionData,
       {
           headers: {

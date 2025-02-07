@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux"; 
 import Header from "../components/Header";
 import Button from "../components/Button";
 import Viewer from "../components/post/Viewer";
@@ -24,6 +25,10 @@ const Post = () => {
   const [isSummaryLoading, setIsSummaryLoading] = useState(false); // 요약 버튼 상태
   const [isCompletingVote, setIsCompletingVote] = useState(false); // 투표완료 버튼 상태
   const [statistics, setStatistics] = useState(null); // 통계 데이터 상태
+  // Redux에서 로그인된 사용자 정보 가져오기
+  const { isLoggedIn, user } = useSelector((state) => state.loginSlice);
+  // 현재 사용자가 토론글 작성자인지 확인
+  const isPostAuthor = isLoggedIn && user?.nickname === curPostItem?.nickname;
 
   // 의견 데이터 로드 함수
   const fetchOpinions = async () => {
@@ -149,13 +154,13 @@ const Post = () => {
         title={"토론의 장"}
         leftChild={<Button onClick={() => nav(-1)} text={"< 뒤로가기"} />}
         rightChild={
-          postType === "DISCUSSING" ? (
+          isPostAuthor && postType === "DISCUSSING" ? (
             <Button
               onClick={handleSummaryCreation}
               text={isSummaryLoading ? "요약 중..." : "의견 요약"}
               disabled={isSummaryLoading}
             />
-          ) : postType === "VOTING" ? (
+          ) : isPostAuthor && postType === "VOTING" ? (
             <Button
               onClick={handleCompleteVote}
               text={isCompletingVote ? "완료 중..." : "투표완료"}
@@ -171,6 +176,7 @@ const Post = () => {
         nickname={nickname}
         postType={postType}
         opinions={opinions}
+        currentUser={user}
       />
       {postType === "DISCUSSING" && (
         <>

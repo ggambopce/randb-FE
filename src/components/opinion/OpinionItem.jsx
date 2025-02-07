@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import "./OpinionItem.css";
+import { useSelector } from "react-redux";
+import "./OpinionItem.css"; 
 import { updateOpinion, deleteOpinion } from "../../api/opinionApi";
 
 const OpinionItem = ({ opinion, onOpinionUpdate, onOpinionDelete }) => {
   const { id, opinionContent, nickname, opinionType, create_at } = opinion;
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(opinionContent);
+  // Redux에서 로그인한 사용자 정보 가져오기
+  const { isLoggedIn, user } = useSelector((state) => state.loginSlice);
+
+  // 현재 로그인한 사용자가 의견 작성자인지 확인
+  const isOpinionAuthor = isLoggedIn && user?.nickname === nickname;
 
   const handleUpdate = async () => {
     try {
@@ -64,14 +70,17 @@ const OpinionItem = ({ opinion, onOpinionUpdate, onOpinionDelete }) => {
       ) : (
         <div className="opinion-content">
           <p>{opinionContent}</p>
-          <div className="opinion-actions">
-            <button onClick={() => setIsEditing(true)} className="small-button edit-button">
-              수정
-            </button>
-            <button onClick={handleDelete} className="small-button delete-button">
-              삭제
-            </button>
-          </div>
+          {/* 의견 작성자인 경우만 수정/삭제 버튼 표시 */}
+          {isOpinionAuthor && (
+            <div className="opinion-actions">
+              <button onClick={() => setIsEditing(true)} className="small-button edit-button">
+                수정
+              </button>
+              <button onClick={handleDelete} className="small-button delete-button">
+                삭제
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

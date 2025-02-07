@@ -170,6 +170,7 @@ const Post = () => {
         postContent={postContent}
         nickname={nickname}
         postType={postType}
+        opinions={opinions}
       />
       {postType === "DISCUSSING" && (
         <>

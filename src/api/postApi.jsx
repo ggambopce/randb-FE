@@ -19,7 +19,7 @@ export const getPosts = async(pageParam) => {
 
     const res = await axios.get(`${prefix}/posts`, {params:{page,size}})
 
-    return res.data
+    return res.data 
 }
 
 export const mainPosts = async() => {

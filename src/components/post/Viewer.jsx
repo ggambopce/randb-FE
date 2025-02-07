@@ -11,7 +11,9 @@ const Viewer = ({
     nickname, 
     postType, 
     likeCount, 
-    onLike }) => { // 토론글 상태 추가
+    onLike,
+    opinions = [] 
+   }) => { // 토론글 상태 추가
     
     const nav = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
@@ -67,7 +69,9 @@ const Viewer = ({
     <button onClick={() => setMenuOpen(!menuOpen)}>⋮</button>
     {menuOpen && (
       <div className="dropdown_menu">
-        <button onClick={() => { handleEdit(); setMenuOpen(false); }}>수정</button>
+        {opinions.length === 0 && ( // 의견이 없을 때만 수정 버튼 표시
+                                <button onClick={() => { handleEdit(); setMenuOpen(false); }}>수정</button>
+                            )}
         <button className="text-red-600" onClick={() => { handleDelete(); setMenuOpen(false); }}>삭제</button>
       </div>
     )}

@@ -56,7 +56,6 @@ const Editor = ({ initData,onSubmit}) => {
         setLoading(true); // 로딩 상태 활성화
         try {
             await onSubmit(input); // 전달받은 onSubmit으로 API 호출
-            alert("작성 완료!");
             nav("/", { replace: true }); // 작성 후 홈으로 이동
         } catch (err) {
             console.error("작성 중 오류 발생:", err);

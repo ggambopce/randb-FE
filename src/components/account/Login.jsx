@@ -58,7 +58,9 @@ const Login = () => {
         <div className="LoginContainer">
             <div className="LoginHeader">
                 <h1>RED & BLUE</h1>
-                <p>찬반토론에 참여하세요</p>
+                <p>지피티가 요약해주는 토론 프로그램 V.1.0</p>
+                <p>대놓고 떠드는 토론을 하고 싶었습니다.</p>
+                <p>에러가 나고 갑자기 데이터가 사라질 수 있습니다.</p>
             </div>
             <form onSubmit={handleLogin} className="LoginForm">
                 <input name="loginId" placeholder="아이디" required />

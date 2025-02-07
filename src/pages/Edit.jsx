@@ -47,7 +47,7 @@ const Edit = () => {
     };
 
     const onSubmit = async (input) => {
-        if (window.confirm("토론을 정말 수정할까요?")) {
+        if (window.confirm("의견이 작성되면 토론을 수정할 수 없습니다.\n 토론을 정말 수정할까요?")) {
             try {
                 await updatePost(params.id, input);
                 alert("수정이 완료되었습니다!");

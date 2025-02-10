@@ -9,6 +9,7 @@ const ProfileNew = () => {
 
     const onSubmit = async (input, file) => {
         try {
+            
             // API 호출로 데이터를 백엔드에 저장
             await addProfile(
                 {

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import { addProfile } from "../../api/profileApi";
 
-const EditorProfile = ({ initData, onSubmit }) => {
+const EditorProfile = ({ initData }) => {
     const [input, setInput] = useState({
         nickname: "",
         gender: "",
@@ -22,7 +22,10 @@ const EditorProfile = ({ initData, onSubmit }) => {
     // 초기값 설정
     useEffect(() => {
         if (initData) {
-            setInput(initData);
+            setInput({
+                ...initData,
+                age: initData.age ? initData.age.split("T")[0] : "", // "YYYY-MM-DD"
+        });
         }
     }, [initData]);
 
@@ -49,8 +52,7 @@ const EditorProfile = ({ initData, onSubmit }) => {
 
         setLoading(true); // 로딩 상태 활성화
         try {
-            await onSubmit(input, file); // 전달받은 onSubmit으로 API 호출
-            alert("프로필 작성 완료!");
+            await addProfile(input, file);
             nav("/", { replace: true }); // 작성 후 홈으로 이동
         } catch (err) {
             console.error("프로필 작성 중 오류 발생:", err);

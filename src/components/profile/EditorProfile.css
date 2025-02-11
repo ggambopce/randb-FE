@@ -1,0 +1,130 @@
+/* EditorProfile.css */
+.EditorProfile {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fff7e6;
+    border: 1px solid #ffd8a8;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* 제목 스타일 */
+.EditorProfile h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #d9480f;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* 폼 스타일 */
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 20px;
+}
+
+/* 입력 필드 및 선택 박스 */
+.profile-form input,
+.profile-form select,
+.profile-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ffd8a8;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: white;
+    transition: border 0.3s ease-in-out;
+}
+
+.profile-form input:focus,
+.profile-form select:focus,
+.profile-form textarea:focus {
+    border-color: #ff922b;
+    outline: none;
+}
+
+/* 라벨 스타일 */
+.profile-form label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d9480f;
+}
+
+/* 텍스트 영역 스타일 */
+.profile-form textarea {
+    resize: none;
+    height: 80px;
+}
+
+/* 버튼 영역 */
+.button-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 20px;
+}
+
+/* 버튼 스타일 */
+.button-section button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+/* 취소 버튼 */
+.button-section button:first-child {
+    background-color: #ccc;
+    color: #333;
+    border: 1px solid #aaa;
+}
+
+.button-section button:first-child:hover {
+    background-color: #bbb;
+}
+
+/* 작성 완료 버튼 */
+.button-section button:last-child {
+    background-color: #ff7600;
+    color: white;
+    border: none;
+}
+
+.button-section button:last-child:hover {
+    background-color: #ff5700;
+}
+
+/* 파일 업로드 스타일 */
+.profile-form input[type="file"] {
+    border: none;
+    padding: 5px;
+}
+
+/* 반응형 조정 */
+@media (max-width: 600px) {
+    .EditorProfile {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .profile-form input,
+    .profile-form select,
+    .profile-form textarea {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .button-section button {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+}

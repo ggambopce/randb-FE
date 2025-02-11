@@ -1,0 +1,110 @@
+/* ViewerProfile.css */
+.ViewerProfile {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fff7e6;
+    border: 1px solid #ffd8a8;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  /* 프로필 제목 스타일 */
+  .ViewerProfile h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #d9480f;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  /* 프로필 이미지 스타일 */
+  .profile-image {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .profile-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #ffd8a8;
+  }
+  
+  /* 프로필 정보 스타일 */
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #495057;
+  }
+  
+  /* 프로필 텍스트 스타일 */
+  .profile-info p {
+    margin: 5px 0;
+  }
+  
+  /* 소셜 미디어 링크 스타일 */
+  .profile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 10px 20px;
+  }
+  
+  .profile-links a {
+    color: #d9480f;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .profile-links a:hover {
+    color: #ff7600;
+  }
+  
+  /* 자기소개 스타일 */
+  .profile-bio {
+    font-size: 18px;
+    font-style: italic;
+    color: #6c757d;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px 20px;
+  }
+  
+  /* 이메일 및 실명 스타일 */
+  .profile-email,
+  .profile-realname {
+    font-weight: bold;
+    color: #343a40;
+  }
+  
+  /* 반응형 조정 */
+  @media (max-width: 600px) {
+    .ViewerProfile {
+      max-width: 90%;
+      padding: 15px;
+    }
+  
+    .profile-info {
+      font-size: 16px;
+    }
+  
+    .profile-bio {
+      font-size: 16px;
+    }
+  
+    .profile-links a {
+      font-size: 16px;
+    }
+  }
+  

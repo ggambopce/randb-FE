@@ -8,7 +8,8 @@ const Viewer = ({
     id,
     postTitle, 
     postContent, 
-    nickname, 
+    nickname,
+    profileId, 
     postType, 
     likeCount, 
     onLike,
@@ -19,6 +20,16 @@ const Viewer = ({
     const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null); 
 
+  // 프로필 페이지 이동 함수 추가
+  const handleProfileClick = () => {
+    console.log("닉네임 클릭됨! profileId:", profileId); // 디버깅 로그 추가
+    if (profileId) {
+        console.log(`🔗 이동할 URL: /detailprofile/${profileId}`);
+        nav(`/detailprofile/${profileId}`);
+    } else {
+        console.warn("⚠️ 프로필 ID가 존재하지 않습니다!");
+    }
+};
 
     // 수정 페이지로 이동하는 함수
     const handleEdit = () => {
@@ -79,7 +90,16 @@ const Viewer = ({
         {/* 작성자 */}
         {nickname && (
           <div className="username_wrapper">
-            <span>작성자: <strong>{nickname}</strong></span>
+            <span>
+              작성자: 
+              <strong 
+                className="clickable_nickname" // 클릭 가능한 스타일 추가
+                onClick={() => handleProfileClick()}
+                style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
+              >
+               {nickname}
+              </strong>
+            </span>
           </div>
         )}
         <div className="action_buttons">

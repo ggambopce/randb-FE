@@ -174,6 +174,7 @@ const Post = () => {
         postTitle={postTitle}
         postContent={postContent}
         nickname={nickname}
+        profileId={curPostItem.profileId}
         postType={postType}
         opinions={opinions}
         currentUser={user}

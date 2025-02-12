@@ -110,3 +110,23 @@
 .cancel-button:hover {
   background-color: #adb5bd; /* 더 진한 회색 */
 }
+
+/* 클릭 가능한 닉네임 */
+.clickable-nickname {
+  cursor: pointer;
+  font-weight: bold;
+  color: #007bff !important; /* 링크 스타일 블루 */
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+/* 마우스 오버 효과 */
+.clickable-nickname:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* 클릭 시 효과 */
+.clickable-nickname:active {
+  color: #003f7f;
+}

@@ -17,6 +17,16 @@ const Home = () => {
     const nav = useNavigate();
     const { isLoggedIn, user } = useSelector((state) => state.loginSlice);
 
+    // 사용자 프로필 페이지로 이동하는 함수
+    const handleProfileClick = () => {
+        if (user?.profileId) {
+            nav(`/detailprofile/${user.profileId}`);
+        } else {
+            alert("프로필 ID가 없습니다.");
+        }
+    };
+
+
 
      // 사용자 정보 요청 및 상태 업데이트
      const fetchUserInfo = async () => {
@@ -77,7 +87,18 @@ const Home = () => {
                 rightChild={
                     isLoggedIn ? (
                         <div>
-                            <span>{user?.nickname} 님</span>
+                            <span 
+                                className="clickable-nickname"
+                                onClick={handleProfileClick}
+                                style={{ 
+                                    cursor: "pointer", 
+                                    color: "#007bff", 
+                                    fontWeight: "bold"
+                                }}
+                            >
+                                {user?.nickname}</span> 
+                                <span>님 환영합니다
+                            </span>
                             <Button text={"로그아웃"} onClick={handleLogout} />
                         </div>
                     ) : (

@@ -1,17 +1,29 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "./OpinionItem.css"; 
 import { updateOpinion, deleteOpinion } from "../../api/opinionApi";
 
 const OpinionItem = ({ opinion, onOpinionUpdate, onOpinionDelete }) => {
-  const { id, opinionContent, nickname, opinionType, create_at } = opinion;
+  const { id, opinionContent, nickname, profileId, opinionType, create_at } = opinion;
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(opinionContent);
+  const nav = useNavigate();
+
   // Redux에서 로그인한 사용자 정보 가져오기
   const { isLoggedIn, user } = useSelector((state) => state.loginSlice);
 
   // 현재 로그인한 사용자가 의견 작성자인지 확인
   const isOpinionAuthor = isLoggedIn && user?.nickname === nickname;
+
+  //  프로필 페이지로 이동하는 함수
+  const handleProfileClick = () => {
+    if (profileId) {
+      nav(`/detailprofile/${profileId}`);
+    } else {
+      alert("해당 사용자의 프로필 정보를 찾을 수 없습니다.");
+    }
+  };
 
   const handleUpdate = async () => {
     try {
@@ -43,7 +55,16 @@ const OpinionItem = ({ opinion, onOpinionUpdate, onOpinionDelete }) => {
       <div className="opinion-header">
         <strong className="opinion-type">{opinionType}</strong>
         <div className="opinion-meta">
-        <span className="opinion-user">작성자: {nickname}</span>
+        {/*닉네임 클릭 시 프로필 이동 */}
+        <span>
+        작성자:
+        <strong
+            className="opinion-user clickable-nickname" 
+            onClick={handleProfileClick}
+          >
+             {nickname}
+            </strong>
+          </span>
         <span className="opinion-date">{new Date(create_at).toLocaleString("ko-KR", {
     year: "numeric",
     month: "long",

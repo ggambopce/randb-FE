@@ -95,7 +95,6 @@ const Viewer = ({
               <strong 
                 className="clickable_nickname" // 클릭 가능한 스타일 추가
                 onClick={() => handleProfileClick()}
-                style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
               >
                {nickname}
               </strong>

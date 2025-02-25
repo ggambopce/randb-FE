@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import "./SocialLoginButtons.css";
 
 const SocialLoginButtons = () => {
-    const GOOGLE_AUTH_URL = "http://localhost:8080/oauth2/authorization/google";
-    const NAVER_AUTH_URL = "http://localhost:8080/oauth2/authorization/naver";
+    const GOOGLE_AUTH_URL = "https://jinorandb.com/oauth2/authorization/google";
+    const NAVER_AUTH_URL = "https://jinorandb.com/oauth2/authorization/naver";
 
 
     return (

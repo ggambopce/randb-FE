@@ -33,7 +33,7 @@ const Post = () => {
   // 의견 데이터 로드 함수
   const fetchOpinions = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/opinions`, {
+      const response = await axios.get(`https://jinorandb.com/api/opinions`, {
         params: { postId: params.id },
       });
       setOpinions(response.data.data); // 초기 의견 데이터 설정
@@ -46,7 +46,7 @@ const Post = () => {
   const fetchStatistics = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/user/posts/${params.id}/statistics`
+        `https://jinorandb.com/api/user/posts/${params.id}/statistics`
       );
       setStatistics(response.data);
     } catch (err) {
@@ -56,7 +56,7 @@ const Post = () => {
 
   const fetchSummary = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/user/opinionSummary`, {
+      const response = await axios.get(`https://jinorandb.com/api/user/opinionSummary`, {
         params: { postId: params.id },
       });
       setSummary(response.data.data); // 요약 데이터 상태 업데이트
@@ -81,7 +81,7 @@ const Post = () => {
     const token = getAuthToken();
     try {
       // 요약 작성 API 호출
-      await axios.post(`http://localhost:8080/api/user/opinionSummary`,
+      await axios.post(`https://jinorandb.com/api/user/opinionSummary`,
         null, 
         {
           headers: {
@@ -106,14 +106,14 @@ const Post = () => {
   const handleCompleteVote = async () => {
     setIsCompletingVote(true);
     try {
-      await axios.post(`http://localhost:8080/api/user/posts/${params.id}/complete`);
+      await axios.post(`https://jinorandb.com/api/user/posts/${params.id}/complete`);
       alert("투표가 완료되었습니다!");
       
       reload(); // Post 상태 새로고침
 
         // 통계 데이터를 즉시 로드 및 반영
       const statisticsResponse = await axios.get(
-        `http://localhost:8080/api/user/posts/${params.id}/statistics`
+        `https://jinorandb.com/api/user/posts/${params.id}/statistics`
       );
       setStatistics(statisticsResponse.data.data);
 

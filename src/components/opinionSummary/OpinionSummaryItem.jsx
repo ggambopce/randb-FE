@@ -15,7 +15,7 @@ const OpinionSummaryItem = ({ postId, postType, reloadPost }) => {
 
   // Axios 인스턴스 생성 (JWT 토큰 포함)
   const axiosInstance = axios.create({
-    baseURL: "http://localhost:8080/api/user", // 공통 URL
+    baseURL: "https://jinorandb.com/api/user", // 공통 URL
     headers: {
       Authorization: `Bearer ${getAuthToken()}`, // JWT 토큰 추가
     },

@@ -24,7 +24,7 @@ const Login = () => {
         try {
             // 로그인 요청
             const response = await axios.post(
-                "http://localhost:8080/api/login",
+                "https://jinorandb.com/api/login",
                 loginData,
                 {
                     headers: {

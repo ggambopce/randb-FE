@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const API_SERVER_HOST = 'https://jinorandb.com'
+export const API_SERVER_HOST = import.meta.env.VITE_API_BASE_URL;
 
 const prefix = `${API_SERVER_HOST}/api` 
 

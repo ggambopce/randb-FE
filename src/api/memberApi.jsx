@@ -1,7 +1,9 @@
 import axios from "axios";
 import { extractJwtToken } from "../util/JwtToken";
 
-export const API_SERVER_HOST = "https://jinorandb.com";
+console.log("🚀 VITE_API_BASE_URL:", import.meta.env.VITE_API_BASE_URL);
+
+export const API_SERVER_HOST = import.meta.env.VITE_API_BASE_URL;
 const prefix = `${API_SERVER_HOST}/api`;
 
 export const getUserInfo = async () => { // 일반로그인, 소셜로그인 통합처리

@@ -1,8 +1,9 @@
 import axios from "axios";
 
-export const API_SERVER_HOST = import.meta.env.VITE_API_BASE_URL;
+export const API_SERVER_HOST = import.meta.env.VITE_API_BASE_URL || "https://jinorandb.com";
 
 const prefix = `${API_SERVER_HOST}/api` 
+
 
 // 로컬 스토리지에서 JWT 토큰 가져오기
 const getAuthToken = () => localStorage.getItem("authToken");

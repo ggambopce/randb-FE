@@ -2,13 +2,18 @@
 <img width="700" alt="RED & BLUE" src="https://github.com/user-attachments/assets/f05fd1d0-f838-4ce5-b53d-1eb53e977515">
 <br/>
 
+## 📡 웹페이지 주소
+> RED & BLUE : [프로젝트 페이지 연결](https://jinorandb.com)<br>
+
 ## 📮 관련 링크 주소
 > 유튜브 : [프로젝트 3단계ChatGPT를 활용한 의견요약 기능구현 REACT & Spring 연결](https://www.youtube.com/shorts/58JxkTnWGrE)<br>
 > 유튜브 : [프로젝트 2단계 스프링 시큐리티 기능 소개 바로가기](https://youtu.be/6JxF50EOD-c?si=o4SoZmt29BsFlRUU)<br>
 > 유튜브 : [프로젝트 1단계 GPT API 기능 소개 바로가기](https://youtu.be/xuX7EdBltCo)<br>
 > 유튜브 : [프로젝트 시큐리티 비동기인증 기능 소개 바로가기](https://youtu.be/48NNRVa8L94?si=W10ZhFbLQB2mss6o)<br>
 > RED&BLUE  노션 : [노션 바로가기](https://buttered-uranium-6ec.notion.site/Red-Blue-4f5bc894cd674fce88a16989a82602cc?pvs=4)<br>
+## 🛜 배포 및 개발환경
 
+<img width="900" alt="Image" src="https://github.com/user-attachments/assets/c98476f1-a08e-4f96-b120-12d2053733f0" /><br>
 ## 📽️ 프로젝트 간략소개
 
 ### 🂱 ChatGPT를 활용한 토론 프로그램
@@ -46,11 +51,21 @@
 <img src="https://img.shields.io/badge/JUnit5-25A162?style=flat-square&logo=JUnit5&logoColor=white"/></img>
 </p>
 
+<h3 align="center"> 배포 및 운영 환경 </h3>
+<p align="center"> 
+<img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/> 
+    <img src="https://img.shields.io/badge/Nginx-009639?style=flat-square&logo=Nginx&logoColor=white"/>  
+    <img src="https://img.shields.io/badge/Docker Hub-0db7ed?style=flat-square&logo=Docker&logoColor=white"/> 
+    <img src="https://img.shields.io/badge/Ubuntu 20.04-E95420?style=flat-square&logo=Ubuntu&logoColor=white"/> 
+    <img src="https://img.shields.io/badge/Windows Server-0078D6?style=flat-square&logo=Windows&logoColor=white"/> 
+</p>
+
 <h3 align="center"> 보안 </h3>
 <p align="center">
 <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=flat-square&logo=Spring Security&logoColor=white"/></img>
 <img src="https://img.shields.io/badge/OAuth2.0-EB5424?style=flat-square&logo=querydsl&logoColor=white"/></img>
 <img src="https://img.shields.io/badge/JWT-6DB33F?style=flat-square&logo=JsonWebTokens&logoColor=white"/></img>
+<img src="https://img.shields.io/badge/SSL/TLS-0033A0?style=flat-square&logo=LetsEncrypt&logoColor=white"/></img>
 
 <h3 align="center"> DB </h3>
 

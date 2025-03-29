@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const API_SERVER_HOST = import.meta.env.VITE_API_BASE_URL || "https://jinorandb.com";
+export const API_SERVER_HOST = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
 const prefix = `${API_SERVER_HOST}/api`
 
 // 이메일 인증 코드 발송 API

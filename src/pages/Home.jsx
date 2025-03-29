@@ -50,7 +50,10 @@ const Home = () => {
 
     // 사용자 정보 복원
     useEffect(() => {
-        if (!isLoggedIn) {
+        const token = extractJwtToken();
+
+        // 로컬에 토큰이 있는 경우만 사용자 정보 요청
+        if (!isLoggedIn && token) {
             fetchUserInfo(); // 사용자 정보 요청
         }
     }, [isLoggedIn, dispatch, nav]);
